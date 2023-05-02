@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/bin/Debug/net6.0-windows/Content/2D/bullet.png</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/bin/Debug/net6.0-windows/Content/2D/hero.png</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/bin/Debug/net6.0-windows/Content/2D/interface/cursor.png</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/bin/Debug/net6.0-windows/Content/2D/interface/shade.png</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/bin/Debug/net6.0-windows/Content/2D/interface/solid.png</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/bin/Debug/net6.0-windows/Content/2D/simplyNoAnim.png</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/bin/Debug/net6.0-windows/Content/ArialFonts/Arial12.spritefont</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/bin/Debug/net6.0-windows/Content/ArialFonts/Arial52.spritefont</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

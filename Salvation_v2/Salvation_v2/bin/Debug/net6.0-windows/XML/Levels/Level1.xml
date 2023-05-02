@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<User>
+		<Hero>
+			<Pos>
+				<x>0</x>
+				<y>450</y>
+			</Pos>
+		</Hero>
+	</User>
+	<Mob>
+		<Simply>
+			<Pos>
+				<x>800</x>
+				<y>450</y>
+			</Pos>
+		</Simply>
+		<Simply>
+			<Pos>
+				<x>1000</x>
+				<y>450</y>
+			</Pos>
+		</Simply>
+	</Mob>
+</Root>
