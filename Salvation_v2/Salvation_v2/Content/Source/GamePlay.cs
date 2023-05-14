@@ -18,24 +18,41 @@ namespace Salvation_v2
     {
         int playState;
         World world;
-        public GamePlay()
+        int levelNumber;
+        bool[] IsResets = new bool[6]; 
+        public GamePlay(int levelNumber)
         {
             playState = 0;
+            this.levelNumber = levelNumber;
             ResetWorld(null);
         }
 
-        public virtual void Update()
+        public virtual void Update(int levelNumber)
         {
-            if (playState == 0)
+            this.levelNumber = levelNumber;
+            if (levelNumber == 1)
             {
+                if (!IsResets[1])
+                {
+                    ResetWorld(null);
+                    IsResets[1] = true;
+                }
                 world.Update();
             }
-
+            if (levelNumber == 2)
+            {
+                if (!IsResets[2])
+                {
+                    ResetWorld(null);
+                    IsResets[2] = true;
+                }
+                world.Update();
+            }
         }
 
         public virtual void ResetWorld(object info)
         {
-            world = new World(ResetWorld);
+            world = new World(ResetWorld, levelNumber);
         }
 
         public virtual void Draw()

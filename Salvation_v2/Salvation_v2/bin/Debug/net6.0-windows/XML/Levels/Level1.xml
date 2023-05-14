@@ -4,22 +4,87 @@
 		<Hero>
 			<Pos>
 				<x>0</x>
-				<y>450</y>
+				<y>0</y>
 			</Pos>
 		</Hero>
 	</User>
-	<Mob>
-		<Simply>
+	<Spikes>
+		<SpikesList>
+			<StartPos>
+				<Pos>
+					<x>0</x>
+					<y>1055</y>
+				</Pos>
+			</StartPos>
+			<EndPos>
+				<Pos>
+					<x>1920</x>
+					<y>1055</y>
+				</Pos>
+			</EndPos>
+		</SpikesList>
+	</Spikes>
+	<Design>
+		<Platform>
 			<Pos>
-				<x>800</x>
-				<y>450</y>
+				<x>0</x>
+				<y>540</y>
 			</Pos>
-		</Simply>
-		<Simply>
+			<Size>
+				<Width>850</Width>
+				<Height>50</Height>
+			</Size>
+		</Platform>
+		<Platform>
 			<Pos>
-				<x>1000</x>
-				<y>450</y>
+				<x>1070</x>
+				<y>540</y>
 			</Pos>
-		</Simply>
-	</Mob>
+			<Size>
+				<Width>850</Width>
+				<Height>50</Height>
+			</Size>
+		</Platform>
+		<Platform>
+			<Pos>
+				<x>300</x>
+				<y>0</y>
+			</Pos>
+			<Size>
+				<Width>100</Width>
+				<Height>1080</Height>
+			</Size>
+		</Platform>
+	</Design>
+	<NextLevel>
+		<Door>
+			<Pos>
+				<x>1800</x>
+				<y>348</y>
+			</Pos>
+			<Level>2</Level>
+		</Door>
+	</NextLevel>
+	<Parallel>
+		<Platform>
+			<Pos>
+				<x>0</x>
+				<y>540</y>
+			</Pos>
+			<Size>
+				<Width>850</Width>
+				<Height>50</Height>
+			</Size>
+		</Platform>
+		<Platform>
+			<Pos>
+				<x>1070</x>
+				<y>540</y>
+			</Pos>
+			<Size>
+				<Width>850</Width>
+				<Height>50</Height>
+			</Size>
+		</Platform>
+	</Parallel>
 </Root>

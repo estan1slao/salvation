@@ -38,6 +38,12 @@ namespace Salvation_v2
         public static float GetDistance(Vector2 pos, Vector2 target) 
             => (float)Math.Sqrt((pos.X - target.X) * (pos.X - target.X) + (pos.Y - target.Y) * (pos.Y - target.Y));
 
+        public static bool IsInside(Vector2 pos, Rectangle rect) =>
+                pos.X >= rect.Location.X && pos.X <= rect.Location.X + rect.Width &&
+                pos.Y >= rect.Location.Y && pos.Y <= rect.Location.Y + rect.Height;
+
+        public static bool IsInside(Rectangle rect1, Rectangle rect2) => rect1.Intersects(rect2);
+
         public static Vector2 RadialMovement(Vector2 focus, Vector2 pos, float speed)
         {
             var dist = GetDistance(pos, focus);

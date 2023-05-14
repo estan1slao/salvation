@@ -11,6 +11,8 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using SharpDX.Direct3D9;
+using SharpDX.MediaFoundation;
 #endregion
 
 namespace Salvation_v2
@@ -21,16 +23,20 @@ namespace Salvation_v2
         public List<Projectile2D> projectiles = new List<Projectile2D>();
         public List<AttackableObject> allObjects = new List<AttackableObject>();
         public UI UI;
+        public List<Basic2D> nonCollidingObjects = new List<Basic2D>();
+        public List<Spike> spikes = new List<Spike>();
+        public List<Door> doors = new List<Door>();
         PassObject ResetWorld;
+        public List<Basic2D> parralelObject = GameGlobals.parallelObject;
 
         public User user;
-        public World(PassObject resetWorld)
+        public World(PassObject resetWorld, int levelNumber)
         {
             ResetWorld = resetWorld;
             GameGlobals.PassProjectile = AddProjectile;
             GameGlobals.PassMob = AddMob;
 
-            LoadData(1);
+            LoadData(levelNumber);
 
             offset = new Vector2(0, 0);
 
@@ -46,18 +52,26 @@ namespace Salvation_v2
             {
                 allObjects.Clear();
                 allObjects.AddRange(user.GetAllObjects());
-
-                user.Update(user, offset);
+                if (GameGlobals.isParallel)
+                    user.Update(user, offset, parralelObject, doors);
+                else
+                    user.Update(user, offset, nonCollidingObjects, doors);
                 
                 for (int i = 0; i < projectiles.Count; i++)
                 {
-                    projectiles[i].Update(offset, allObjects);
+                    if (GameGlobals.isParallel)
+                        projectiles[i].Update(offset, allObjects, parralelObject);
+                    else
+                        projectiles[i].Update(offset, allObjects, nonCollidingObjects);
                     if (projectiles[i].done)
                     {
                         projectiles.RemoveAt(i);
                         i--;
                     }
                 }
+                allObjects.Add(user.hero);
+                for (int i=0; i<spikes.Count; i++)
+                    spikes[i].Update(offset, allObjects);
             }
             else
             {
@@ -84,6 +98,8 @@ namespace Salvation_v2
             if(xml.Element("Root").Element("User") != null)
                 element = xml.Element("Root").Element("User");
             user = new User(0, element);
+            //nonCollidingObjects.Add(user.hero);
+            //parralelObject.Add(user.hero);
 
             element = null;
             if (xml.Element("Root").Element("Mob") != null)
@@ -92,16 +108,109 @@ namespace Salvation_v2
                 var simplyList = (from t in element.Descendants("Simply")
                                select t).ToList();
                 for (int i = 0; i < simplyList.Count; i++)
-                    user.units.Add(new Simply(new Vector2(Convert.ToInt32(simplyList[i].Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(simplyList[i].Element("Pos").Element("y").Value, Globals.cultureRU)), i+1));
+                {
+                    var simply = new Simply(new Vector2(Convert.ToInt32(simplyList[i].Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(simplyList[i].Element("Pos").Element("y").Value, Globals.cultureRU)),new Vector2(8,8), i + 1, TypeOfDeath.OnlyReal);
+                    user.units.Add(simply);
+                }
+                var speedyList = (from t in element.Descendants("Speedy") 
+                                  select t).ToList();
+                for (int i=0; i < speedyList.Count; i++)
+                {
+                    var speedy = new Speedy(new Vector2(Convert.ToInt32(simplyList[i].Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(simplyList[i].Element("Pos").Element("y").Value, Globals.cultureRU)), new Vector2(8, 6), i + 1, TypeOfDeath.OnlyParallel);
+                    user.units.Add(speedy);
+                }
             }
+
+            if (xml.Elements("Root").Elements("Spikes") != null)
+            {
+                element = xml.Element("Root").Element("Spikes");
+                var spikeList = (from t in element.Descendants("Spike")
+                                 select t).ToList();
+                for (int i = 0; i < spikeList.Count; i++)
+                {
+                    var spike = new Spike(new Vector2(Convert.ToInt32(spikeList[i].Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(spikeList[i].Element("Pos").Element("y").Value, Globals.cultureRU)), new Vector2(25,25), 0, new Vector2(1,1), 10,TypeOfDeath.Everywhere);
+                    spikes.Add(spike);
+                }
+
+                spikeList = (from t in element.Descendants("SpikesList")
+                                select t).ToList();
+                for(int i = 0; i < spikeList.Count; i++)
+                {
+                    var startPos = new Vector2(Convert.ToInt32(spikeList[i].Element("StartPos").Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(spikeList[i].Element("StartPos").Element("Pos").Element("y").Value, Globals.cultureRU));
+                    var endPos = new Vector2(Convert.ToInt32(spikeList[i].Element("EndPos").Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(spikeList[i].Element("EndPos").Element("Pos").Element("y").Value, Globals.cultureRU));
+                    for (int j = 0; j < endPos.X - startPos.X; j+=25)
+                    {
+                        var spike = new Spike(new Vector2(j, (int)startPos.Y), new Vector2(25, 25), 0, new Vector2(1, 1), 10, TypeOfDeath.Everywhere);
+                        spikes.Add(spike);
+                    }
+                }
+            }
+
+            if (xml.Elements("Root").Elements("Design") != null)
+            {
+                element = xml.Element("Root").Element("Design");
+                var platformList = (from t in element.Descendants("Platform")
+                                    select t).ToList();
+                for(int i = 0; i < platformList.Count; i++)
+                {
+                    var platform = new Basic2D("2D\\Texture\\platform", new Vector2(Convert.ToInt32(platformList[i].Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(platformList[i].Element("Pos").Element("y").Value, Globals.cultureRU)),
+                        new Vector2(Convert.ToInt32(platformList[i].Element("Size").Element("Width").Value, Globals.cultureRU), Convert.ToInt32(platformList[i].Element("Size").Element("Height").Value, Globals.cultureRU)));
+                    nonCollidingObjects.Add(platform);
+                }
+            }
+
+            if (xml.Elements("Root").Elements("NextLevel") != null)
+            {
+                element = xml.Element("Root").Element("NextLevel");
+                var doorList = (from t in element.Descendants("Door")
+                                select t).ToList();
+                for( int i = 0; i < doorList.Count; i++)
+                {
+                    var door = new Door(new Vector2(Convert.ToInt32(doorList[i].Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(doorList[i].Element("Pos").Element("y").Value, Globals.cultureRU)), Convert.ToInt32(doorList[i].Element("Level").Value, Globals.cultureRU));
+                    doors.Add(door);
+                }
+
+            }
+
+            if (xml.Elements("Root").Elements("Parallel") != null)
+            {
+                element = xml.Element("Root").Element("Parallel");
+                var parObjList = (from t in element.Descendants("Platform")
+                              select t).ToList();
+                for (int i = 0; i < parObjList.Count; i++)
+                {
+                    var parObj = new Basic2D("2D\\Texture\\platform", new Vector2(Convert.ToInt32(parObjList[i].Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(parObjList[i].Element("Pos").Element("y").Value, Globals.cultureRU)),
+                        new Vector2(Convert.ToInt32(parObjList[i].Element("Size").Element("Width").Value, Globals.cultureRU), Convert.ToInt32(parObjList[i].Element("Size").Element("Height").Value, Globals.cultureRU)));
+                    parralelObject.Add(parObj);
+                }
+            }
+
+            #region Test
+            //nonCollidingObjects.Add(new Basic2D("2D\\simplyNoAnim", new Vector2(200, 600), new Vector2(100, 100)));
+            //var spikeObj = new Spike(new Vector2(700, Globals.screenHeight - 25), new Vector2(25, 25), 0, new Vector2(1, 1), 0);
+            //spikes.Add(spikeObj);
+            #endregion
         }
 
         public virtual void Draw(Vector2 offset) 
         {
+            for (int i = 0; i < doors.Count; i++)
+                doors[i].Draw(this.offset);
+
             user.Draw(this.offset);
 
             for (int i = 0; i < projectiles.Count; i++)
                 projectiles[i].Draw(this.offset);
+
+            if (GameGlobals.isParallel)
+                for (int i = 0; i < parralelObject.Count; i++)
+                    parralelObject[i].Draw(this.offset);
+            else
+                for (int i = 0; i < nonCollidingObjects.Count; i++)
+                    nonCollidingObjects[i].Draw(this.offset);
+
+            for (int i = 0; i < spikes.Count; i++)
+                spikes[i].Draw(this.offset);
 
             UI.Draw(this);
         }

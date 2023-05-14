@@ -23,6 +23,10 @@ namespace Salvation_v2
         GamePlay gamePlay;
         Basic2D cursor;
 
+        #region Test
+        Basic2D texture;
+        Basic2D spike;
+        #endregion
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -32,12 +36,13 @@ namespace Salvation_v2
 
         protected override void Initialize()
         {
-            Globals.screenWidth = 1600;
-            Globals.screenHeight = 900;
-            Globals.Gravitation = 10f;
+            Globals.screenWidth = 1920;
+            Globals.screenHeight = 1080;
+            Globals.Gravitation = 20f;
 
             _graphics.PreferredBackBufferWidth = Globals.screenWidth;
             _graphics.PreferredBackBufferHeight = Globals.screenHeight;
+            //_graphics.IsFullScreen = true;
             _graphics.ApplyChanges();
 
             base.Initialize();
@@ -52,7 +57,12 @@ namespace Salvation_v2
             Globals.Keyboard = new NKeyboard();
             Globals.Mouse = new NMouseControl();
 
-            gamePlay = new GamePlay();
+            #region Test
+            //texture = new Basic2D("2D\\simplyNoAnim", new Vector2(200, 600), new Vector2(100, 100));
+            //spike = new Spike(new Vector2(700, Globals.screenHeight - 25), new Vector2(25, 25), 0, new Vector2(1, 1), 0);
+            #endregion
+
+            gamePlay = new GamePlay(GameGlobals.levelNumber);
         }
 
         protected override void Update(GameTime gameTime)
@@ -64,7 +74,7 @@ namespace Salvation_v2
             Globals.Keyboard.Update();
             Globals.Mouse.Update();
 
-            gamePlay.Update();
+            gamePlay.Update(GameGlobals.levelNumber);
 
             Globals.Keyboard.UpdateOld();
             Globals.Mouse.UpdateOld();
@@ -77,10 +87,18 @@ namespace Salvation_v2
             GraphicsDevice.Clear(Color.CornflowerBlue);
             
             Globals.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
-
+            if(GameGlobals.isParallel)
+                Globals.SpriteBatch.Draw(Content.Load<Texture2D>("2D\\backgrounds\\backgroundPar"), new Vector2(0, 0), Color.White);
+            else
+                Globals.SpriteBatch.Draw(Content.Load<Texture2D>("2D\\backgrounds\\backgroundReal"), new Vector2(0, 0), Color.White);
             gamePlay.Draw();
             cursor.Draw(new Vector2(Globals.Mouse.newMousePos.X, Globals.Mouse.newMousePos.Y), new Vector2(0, 0), Color.White);
-            
+
+            #region Test
+            //texture.Draw(new Vector2(0, 0));
+            //spike.Draw(Vector2.Zero);
+            #endregion
+
             Globals.SpriteBatch.End();
             base.Draw(gameTime);
         }

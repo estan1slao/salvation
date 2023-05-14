@@ -36,25 +36,38 @@ namespace Salvation_v2
             timer = new NTimer(1500);
         }
 
-        public virtual void Update(Vector2 offset, List<AttackableObject> units)
+        public virtual void Update(Vector2 offset, List<AttackableObject> units, List<Basic2D> nonCollidingObjects)
         {
             pos += direction * speed;
             timer.UpdateTimer();
             if (timer.Test())
                 done = true;
-            if (HitSomething(units))
+            if (HitSomething(units, nonCollidingObjects))
                 done = true;
         }
 
-        public virtual bool HitSomething(List<AttackableObject> units)
+        public virtual bool HitSomething(List<AttackableObject> units, List<Basic2D> nonCollidingObjects)
         {
             for (int i =0; i < units.Count; i++)
             {
                 if (owner.ownerID != units[i].ownerID && Globals.GetDistance(pos, units[i].pos + units[i].size/2) < units[i].hitDist)
                 {
-                    units[i].GetHit(1);
+                    if (units[i].diesIn == TypeOfDeath.Everywhere)
+                        units[i].GetHit(1);
+                    else if (units[i].diesIn == TypeOfDeath.OnlyReal && !GameGlobals.isParallel)
+                        units[i].GetHit(1);
+                    else if (units[i].diesIn == TypeOfDeath.OnlyParallel && GameGlobals.isParallel)
+                        units[i].GetHit(1);
                     return true;
                 }
+                //else if ()
+            }
+            for(int i = 0; i < nonCollidingObjects.Count; i++)
+            {
+                if (nonCollidingObjects[i] is Hero)
+                    continue;
+                if (Globals.IsInside(pos, nonCollidingObjects[i].HitBox))
+                    return true;
             }
             return false;
         }

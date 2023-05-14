@@ -18,5 +18,8 @@ namespace Salvation_v2
     {
         public static int score = 0;
         public static PassObject PassProjectile, PassMob, CheckScroll;
+        public static int levelNumber = 1;
+        public static bool isParallel = false;
+        public static List<Basic2D> parallelObject = new List<Basic2D>();
     }
 }

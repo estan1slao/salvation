@@ -1,17 +1,7 @@
 ﻿#region Includes
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using SharpDX.MediaFoundation;
+using System.Collections.Generic;
 #endregion
 
 namespace Salvation_v2
@@ -20,25 +10,41 @@ namespace Salvation_v2
     {
         public Texture2D Texture;
         public Vector2 pos;
+        public Vector2 frameSize;
         public Vector2 size = Vector2.Zero;
         public float rotation;
+        public Rectangle HitBox
+        {
+            get
+            {
+                return new Rectangle((int)pos.X, (int)pos.Y, (int)size.X, (int)size.Y);
+            }
+            set
+            {
+                return;
+            }
+        }
 
-        public Basic2D(string path, Vector2 pos, Vector2 size) 
+        public Basic2D(string path, Vector2 pos, Vector2 size)
         {
             this.pos = pos;
             this.size = size;
-            Texture = Globals.Content.Load<Texture2D>(path);
+            if (path != null)
+                Texture = Globals.Content.Load<Texture2D>(path);
+            else
+                Texture = null;
+            rotation = 0f;
         }
 
-        public virtual void Update(Vector2 offset)
-        { 
-
-        }
-
-        public virtual void Draw(Vector2 offset) 
+        public virtual void Update(Vector2 offset, List<Basic2D> nonCollidingObjects, List<Door> doors)
         {
-            if (Texture != null) 
-                Globals.SpriteBatch.Draw(Texture, new Rectangle((int)(pos.X+offset.X) , (int)(pos.Y + offset.Y), (int)size.X, (int)size.Y), 
+
+        }
+
+        public virtual void Draw(Vector2 offset)
+        {
+            if (Texture != null)
+                Globals.SpriteBatch.Draw(Texture, new Rectangle((int)(pos.X + offset.X), (int)(pos.Y + offset.Y), (int)size.X, (int)size.Y),
                     null, Color.White, rotation, Vector2.Zero, SpriteEffects.None, 0);
         }
 

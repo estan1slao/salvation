@@ -1,16 +1,9 @@
 ﻿#region Includes
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
-using Microsoft.Xna.Framework.Media;
 #endregion
 
 namespace Salvation_v2
@@ -20,20 +13,20 @@ namespace Salvation_v2
         public int ID;
         public Hero hero;
         public List<Unit> units = new List<Unit>();
-        public Player(int id, XElement data) 
+        public Player(int id, XElement data)
         {
             id = ID;
             LoadData(data);
         }
 
-        public virtual void Update(Player enemy, Vector2 offset)
+        public virtual void Update(Player enemy, Vector2 offset, List<Basic2D> nonCollidingObjects, List<Door> doors)
         {
-            if (hero != null) 
-                hero.Update(offset);
+            if (hero != null)
+                hero.Update(offset, nonCollidingObjects, doors);
 
             for (int i = 0; i < units.Count; i++)
             {
-                units[i].Update(offset, enemy);
+                units[i].Update(offset, enemy, nonCollidingObjects, doors);
                 if (units[i].dead)
                 {
                     ChangeScore(1);
@@ -65,7 +58,8 @@ namespace Salvation_v2
         public virtual void LoadData(XElement data)
         {
             if (data.Element("Hero") != null)
-                hero = new Hero("2D\\hero", new Vector2(Convert.ToInt32(data.Element("Hero").Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(data.Element("Hero").Element("Pos").Element("y").Value, Globals.cultureRU)), new Vector2(108, 140), ID);
+                hero = new Hero("2D\\Units\\hero", new Vector2(Convert.ToInt32(data.Element("Hero").Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(data.Element("Hero").Element("Pos").Element("y").Value, Globals.cultureRU)), new Vector2(97, 126), new Vector2(8, 2), ID);
+                
         }
 
         public virtual void Draw(Vector2 offset)

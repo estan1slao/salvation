@@ -1,101 +1,114 @@
 ﻿#region Includes
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Drawing.Text;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
-using Microsoft.Xna.Framework.Media;
 #endregion
 
 namespace Salvation_v2
 {
     public class Hero : Unit
     {
-        private Point currentFrame = new Point(0, 0);
-        private Point spriteSize = new Point(8, 2);
-        public int frameWidth = 108;
-        public int frameHeight = 140;
-        private int currentTime = 0;        //Вынос из класса Hero? Позже класс Animated
-        private const int period = 50;      //Вынос из класса Hero? Позже класс Animated
-
         private int spaceCounter = 0;
         private int deltaSpace = 0;
-        private float[] speedSpace = new[] { 100f, 150f, 50f };
+        private float speedSpace = 35f;
         private bool spaceNow = false;
-        public Hero(string path, Vector2 pos, Vector2 size, int ownerID) : base(path, pos, size, ownerID)
+        NTimer timer = new NTimer(100);
+
+        public Hero(string path, Vector2 pos, Vector2 size, Vector2 frames, int ownerID) : base(path, pos, size, frames, ownerID, TypeOfDeath.Everywhere)
         {
-            speed = 10f;
+            speed = 7f;
             health = 20;
             healthMax = 20;
+            HitBox = new Rectangle((int)pos.X, (int)pos.Y, (int)frameSize.X, (int)frameSize.Y);
+            frameAnimations = true;
+            currentAnimation = 0;
+            frameAnimationList.Add(new FrameAnimation(new Vector2(frameSize.X, frameSize.Y), frames, new Vector2(0, 0), 8, 50, 0, "WalkRight"));
+            frameAnimationList.Add(new FrameAnimation(new Vector2(frameSize.X, frameSize.Y), frames, new Vector2(0, 1), 8, 50, 0, "WalkLeft"));
+            frameAnimationList.Add(new FrameAnimation(new Vector2(frameSize.X, frameSize.Y), frames, new Vector2(0, 0), 1, 50, 0, "Stand"));
         }
-        public override void Update(Vector2 offset)
+        public override void Update(Vector2 offset, List<Basic2D> nonCollidingObjects, List<Door> doors)
         {
-            currentTime += Globals.GameTime.ElapsedGameTime.Milliseconds;
+            if (timer.Timer >= 100)
+                timer.Reset();
+            timer.UpdateTimer();
             checkScroll = false;
-            if (currentTime > period)
+            Vector2 nextPos = new Vector2(pos.X, pos.Y);
+            pos -= offset;
+            if (Globals.Keyboard.GetPress("A") && pos.X > 0)
             {
-                pos -= offset;
-                currentTime -= period;
-                if (Globals.Keyboard.GetPress("A") && pos.X > 0)
-                {
-                    currentFrame.Y = 1;
-                    pos = new Vector2(pos.X-speed, pos.Y);
-                    ++currentFrame.X;
-                    if (currentFrame.X >= spriteSize.X)
-                        currentFrame.X = 0;
-                }
-                if (Globals.Keyboard.GetPress("D") && pos.X < Globals.screenWidth - frameWidth)
-                {
-                    currentFrame.Y = 0;
-                    pos = new Vector2(pos.X + speed, pos.Y);
-                    ++currentFrame.X;
-                    if (currentFrame.X >= spriteSize.X)
-                        currentFrame.X = 0;
-                }
-                if (Globals.Keyboard.GetPress("Space") && pos.Y > 0)
-                {
-                    spaceCounter++;
-                    if (spaceCounter == 1)
-                    {
-                        spaceNow = true;
-                    }
-                    if (spaceCounter == 2)
-                    {
-                        spaceNow = true;
-                    }
-                    if (true) // Нужна колизия
-                        spaceCounter = 0;
-                }
-                if(Globals.Keyboard.pressedKeys.Count == 0)
-                    currentFrame.X = 0;
+                SetAnimationByName("WalkLeft");
+                nextPos = new Vector2(pos.X - speed, pos.Y);
+                MoveObjectLeft(nonCollidingObjects, nextPos);
             }
-
+            if (Globals.Keyboard.GetPress("D") && pos.X < Globals.screenWidth - frameSize.X)
+            {
+                SetAnimationByName("WalkRight");
+                nextPos = new Vector2(pos.X + speed, pos.Y);
+                MoveObjectRight(nonCollidingObjects, nextPos);
+            }
+            if (Globals.Keyboard.GetPress("Space") && timer.Test() && pos.Y > 0)
+            {
+                spaceCounter++;
+                if (spaceCounter == 1)
+                {
+                    spaceNow = true;
+                }
+                if (spaceCounter == 2)
+                {
+                    deltaSpace = 0;
+                    spaceNow = true;
+                }
+            }
+            if (Globals.Keyboard.pressedKeys.Count == 0)
+                SetAnimationByName("Stand");
             if (spaceNow)
             {
-                pos.Y -= speedSpace[deltaSpace];
+                nextPos.Y -= speedSpace;
+                MoveObjectTop(nonCollidingObjects, nextPos);
                 deltaSpace++;
-                if (deltaSpace == speedSpace.Length)
+                if (deltaSpace == 10)
                 {
                     deltaSpace = 0;
                     spaceNow = false;
                 }
             }
-
+            if (pos.Y + frameSize.Y >= Globals.screenHeight)
+                spaceCounter = 0;
+            foreach (var obj in nonCollidingObjects)
+            {
+                if (obj == this) continue;
+                if (IsTouchingTop(obj))
+                {
+                    spaceCounter = 0;
+                    break;
+                }
+            }
             if (Globals.Mouse.LeftClick())
-                GameGlobals.PassProjectile(new Bullet(new Vector2(pos.X, pos.Y),this,new Vector2(Globals.Mouse.newMousePos.X, Globals.Mouse.newMousePos.Y) - offset));
+                GameGlobals.PassProjectile(new Bullet(new Vector2(pos.X, pos.Y), this, new Vector2(Globals.Mouse.newMousePos.X, Globals.Mouse.newMousePos.Y) - offset));
 
-            base.Update(offset, null);
+            foreach(var door in doors)
+            {
+                if (Globals.IsInside(HitBox,door.HitBox) && Globals.Keyboard.GetPress("E"))
+                {
+                    door.Update(offset,nonCollidingObjects,doors);
+                }
+            }
+            if (Globals.Keyboard.GetPress("Q") && timer.Test())
+            {
+                timer.Reset();
+                if (GameGlobals.isParallel)
+                    GameGlobals.isParallel = false;
+                else
+                    GameGlobals.isParallel = true;
+            }
+            
+
+            base.Update(offset, null, nonCollidingObjects, doors);
         }
         public override void Draw(Vector2 offset)
         {
-            Globals.SpriteBatch.Draw(Texture, pos, new Rectangle(currentFrame.X*frameWidth, currentFrame.Y * frameHeight, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+            base.Draw(offset);
         }
     }
 }

@@ -4,16 +4,30 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/backgrounds/backgroundPar.png</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/backgrounds/backgroundReal.png</File>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/bullet.png</File>
-    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/hero.png</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/Door.png</File>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/interface/cursor.png</File>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/interface/shade.png</File>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/interface/solid.png</File>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/simplyNoAnim.png</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/Spike.png</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/Texture/platform.png</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/Units/hero.png</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/Units/Simply.png</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/Units/Speedy.png</File>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/ArialFonts/Arial12.spritefont</File>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/ArialFonts/Arial52.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

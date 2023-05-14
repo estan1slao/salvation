@@ -22,9 +22,9 @@ namespace Salvation_v2
             //hero = new Hero("2D\\hero", new Vector2(Globals.screenWidth / 2, Globals.screenHeight / 2), new Vector2(108, 140), id);
         }
 
-        public override void Update(Player enemy, Vector2 offset)
+        public override void Update(Player enemy, Vector2 offset, List<Basic2D> nonCollidingObjects, List<Door> doors)
         {
-            base.Update(enemy, offset);
+            base.Update(enemy, offset, nonCollidingObjects, doors);
         }
     }
 }
