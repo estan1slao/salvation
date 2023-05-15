@@ -11,9 +11,14 @@
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/interface/cursor.png</File>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/interface/shade.png</File>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/interface/solid.png</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/keyboard/E.png</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/keyboard/Q.png</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/keyboard/space_x2.png</File>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/simplyNoAnim.png</File>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/Spike.png</File>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/Texture/platform.png</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/tutorial/monster.png</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/tutorial/parallel.png</File>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/Units/hero.png</File>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/Units/Simply.png</File>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/Units/Speedy.png</File>
@@ -21,6 +26,11 @@
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/ArialFonts/Arial52.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

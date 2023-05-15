@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<User>
+		<Hero>
+			<Pos>
+				<x>0</x>
+				<y>800</y>
+			</Pos>
+		</Hero>
+	</User>
+	<Spikes>
+	</Spikes>
+	<Design>
+		<Platform>
+			<Pos>
+				<x>910</x>
+				<y>0</y>
+			</Pos>
+			<Size>
+				<Width>100</Width>
+				<Height>1080</Height>
+			</Size>
+		</Platform>
+		<Image>
+			<Pos>
+				<x>100</x>
+				<y>90</y>
+			</Pos>
+			<Path>2D\tutorial\parallel</Path>
+			<Size>
+				<Width>560</Width>
+				<Height>98</Height>
+			</Size>
+		</Image>
+	</Design>
+	<NextLevel>
+		<Door>
+			<Pos>
+				<x>1680</x>
+				<y>888</y>
+			</Pos>
+			<Level>4</Level>
+		</Door>
+	</NextLevel>
+	<Parallel>
+	</Parallel>
+</Root>

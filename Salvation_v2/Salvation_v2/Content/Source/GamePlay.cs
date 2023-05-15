@@ -31,23 +31,25 @@ namespace Salvation_v2
         {
             this.levelNumber = levelNumber;
             if (levelNumber == 1)
-            {
-                if (!IsResets[1])
-                {
-                    ResetWorld(null);
-                    IsResets[1] = true;
-                }
-                world.Update();
-            }
+                LoadLevel(levelNumber);
             if (levelNumber == 2)
+                LoadLevel(levelNumber);
+            if (levelNumber == 3)
+                LoadLevel(levelNumber);
+            if (levelNumber == 4)
+                LoadLevel(levelNumber);
+            if (levelNumber == 5)
+                LoadLevel(levelNumber);
+        }
+
+        private void LoadLevel(int levelNumber)
+        {
+            if (!IsResets[levelNumber])
             {
-                if (!IsResets[2])
-                {
-                    ResetWorld(null);
-                    IsResets[2] = true;
-                }
-                world.Update();
+                ResetWorld(null);
+                IsResets[levelNumber] = true;
             }
+            world.Update();
         }
 
         public virtual void ResetWorld(object info)

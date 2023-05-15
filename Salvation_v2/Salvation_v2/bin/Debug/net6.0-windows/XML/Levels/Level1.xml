@@ -45,16 +45,28 @@
 				<Height>50</Height>
 			</Size>
 		</Platform>
-		<Platform>
+		<Image>
 			<Pos>
-				<x>300</x>
-				<y>0</y>
+				<x>729</x>
+				<y>350</y>
 			</Pos>
+			<Path>2D\keyboard\space_x2</Path>
 			<Size>
-				<Width>100</Width>
-				<Height>1080</Height>
+				<Width>462</Width>
+				<Height>54</Height>
 			</Size>
-		</Platform>
+		</Image>
+		<Image>
+			<Pos>
+				<x>1835</x>
+				<y>250</y>
+			</Pos>
+			<Path>2D\keyboard\E</Path>
+			<Size>
+				<Width>48</Width>
+				<Height>54</Height>
+			</Size>
+		</Image>
 	</Design>
 	<NextLevel>
 		<Door>

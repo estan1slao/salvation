@@ -11,35 +11,53 @@
 	<Mob>
 		<Simply>
 			<Pos>
-				<x>800</x>
-				<y>0</y>
+				<x>900</x>
+				<y>380</y>
 			</Pos>
 		</Simply>
 		<Simply>
 			<Pos>
-				<x>1000</x>
-				<y>0</y>
+				<x>900</x>
+				<y>660</y>
 			</Pos>
 		</Simply>
-		<Speedy>
-			<Pos>
-				<x>600</x>
-				<y>0</y>
-			</Pos>
-		</Speedy>
 	</Mob>
 	<Spikes>
+		<Spike>
+			<Pos>
+				<x>630</x>
+				<y>225</y>
+			</Pos>
+		</Spike>
+		<Spike>
+			<Pos>
+				<x>1105</x>
+				<y>225</y>
+			</Pos>
+		</Spike>
+		<Spike>
+			<Pos>
+				<x>700</x>
+				<y>500</y>
+			</Pos>
+		</Spike>
+		<Spike>
+			<Pos>
+				<x>1105</x>
+				<y>835</y>
+			</Pos>
+		</Spike>
 		<SpikesList>
 			<StartPos>
 				<Pos>
 					<x>0</x>
-					<y>1055</y>
+					<y>835</y>
 				</Pos>
 			</StartPos>
 			<EndPos>
 				<Pos>
-					<x>1920</x>
-					<y>1055</y>
+					<x>700</x>
+					<y>835</y>
 				</Pos>
 			</EndPos>
 		</SpikesList>
@@ -48,61 +66,71 @@
 		<Platform>
 			<Pos>
 				<x>0</x>
-				<y>540</y>
+				<y>250</y>
 			</Pos>
 			<Size>
-				<Width>850</Width>
+				<Width>1133</Width>
 				<Height>50</Height>
 			</Size>
 		</Platform>
 		<Platform>
 			<Pos>
-				<x>1070</x>
-				<y>540</y>
+				<x>700</x>
+				<y>525</y>
 			</Pos>
 			<Size>
-				<Width>850</Width>
+				<Width>1220</Width>
 				<Height>50</Height>
 			</Size>
 		</Platform>
 		<Platform>
 			<Pos>
-				<x>300</x>
-				<y>0</y>
+				<x>0</x>
+				<y>860</y>
 			</Pos>
 			<Size>
-				<Width>100</Width>
-				<Height>1080</Height>
+				<Width>1220</Width>
+				<Height>50</Height>
 			</Size>
 		</Platform>
 	</Design>
 	<NextLevel>
 		<Door>
 			<Pos>
-				<x>1680</x>
-				<y>156</y>
+				<x>1800</x>
+				<y>888</y>
 			</Pos>
-			<Level>2</Level>
+			<Level>3</Level>
 		</Door>
 	</NextLevel>
 	<Parallel>
 		<Platform>
 			<Pos>
 				<x>0</x>
-				<y>540</y>
+				<y>250</y>
 			</Pos>
 			<Size>
-				<Width>850</Width>
+				<Width>1133</Width>
 				<Height>50</Height>
 			</Size>
 		</Platform>
 		<Platform>
 			<Pos>
-				<x>1070</x>
-				<y>540</y>
+				<x>700</x>
+				<y>525</y>
 			</Pos>
 			<Size>
-				<Width>850</Width>
+				<Width>1220</Width>
+				<Height>50</Height>
+			</Size>
+		</Platform>
+		<Platform>
+			<Pos>
+				<x>0</x>
+				<y>860</y>
+			</Pos>
+			<Size>
+				<Width>1220</Width>
 				<Height>50</Height>
 			</Size>
 		</Platform>

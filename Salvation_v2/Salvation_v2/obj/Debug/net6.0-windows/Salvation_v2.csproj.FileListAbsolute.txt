@@ -79,3 +79,15 @@ C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\
 C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\backgrounds\backgroundPar.png
 C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\backgrounds\backgroundReal.png
 C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\hero.xnb
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\keyboard\E.png
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\keyboard\Q.png
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\keyboard\space_x2.png
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\keyboard\E.xnb
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\keyboard\Q.xnb
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\keyboard\space_x2.xnb
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\XML\Levels\Level3.xml
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\tutorial\parallel.png
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\tutorial\parallel.xnb
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\tutorial\monster.png
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\XML\Levels\Level4.xml
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\tutorial\monster.xnb

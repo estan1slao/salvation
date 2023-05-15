@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/Units/hero.png</SourceFile>
-  <SourceTime>2023-04-10T18:20:00.6950858+05:00</SourceTime>
+  <SourceTime>2023-05-14T01:38:52.3666189+05:00</SourceTime>
   <DestFile>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/bin/Windows/2D/Units/hero.xnb</DestFile>
-  <DestTime>2023-05-09T17:19:40.4430057+05:00</DestTime>
+  <DestTime>2023-05-15T23:08:11.4300426+05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T16:44:56+05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

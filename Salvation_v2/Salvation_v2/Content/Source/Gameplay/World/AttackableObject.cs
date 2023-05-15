@@ -37,7 +37,7 @@ namespace Salvation_v2
             {
                 dead = true;
             }
-                
+
         }
         public override void Draw(Vector2 offset)
         {
@@ -50,7 +50,7 @@ namespace Salvation_v2
             return HitBox.Right + speed > sprite.HitBox.Left &&
                    HitBox.Left < sprite.HitBox.Left &&
                    HitBox.Bottom - Globals.Gravitation > sprite.HitBox.Top &&
-                   HitBox.Top  < sprite.HitBox.Bottom;
+                   HitBox.Top < sprite.HitBox.Bottom;
         }
 
         protected bool IsTouchingRight(Basic2D sprite)
