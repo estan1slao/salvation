@@ -55,7 +55,7 @@ namespace Salvation_v2
 
         protected bool IsTouchingRight(Basic2D sprite)
         {
-            return HitBox.Left + speed < sprite.HitBox.Right &&
+            return HitBox.Left - speed < sprite.HitBox.Right &&
                    HitBox.Right > sprite.HitBox.Right &&
                    HitBox.Bottom - Globals.Gravitation > sprite.HitBox.Top &&
                    HitBox.Top < sprite.HitBox.Bottom;

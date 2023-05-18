@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Salvation_v2
 {
-    public class LevelSwitch : Basic2D
+    public class LevelSwitch : Animated2d
     {
         public int NextLevel;
-        public LevelSwitch(string path, Vector2 pos, Vector2 size, int nextLevel) : base(path, pos, size)
+        public LevelSwitch(string path, Vector2 pos, Vector2 size,Vector2 frames, int nextLevel) : base(path, pos, size, frames, Color.White)
         {
             NextLevel = nextLevel;
         }

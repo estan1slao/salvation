@@ -21,5 +21,6 @@ namespace Salvation_v2
         public static int levelNumber = 1;
         public static bool isParallel = false;
         public static List<Basic2D> parallelObject = new List<Basic2D>();
+        public static List<Button> Buttons = new List<Button>();
     }
 }

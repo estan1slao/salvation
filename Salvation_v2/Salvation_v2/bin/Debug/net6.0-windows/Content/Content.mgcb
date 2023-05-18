@@ -49,7 +49,7 @@
 /processorParam:TextureFormat=Color
 /build:2D/bullet.png
 
-#begin 2D/Door.png
+#begin 2D/button.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -59,7 +59,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:2D/Door.png
+/build:2D/button.png
+
+#begin 2D/Doors/Door.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:2D/Doors/Door.png
 
 #begin 2D/interface/cursor.png
 /importer:TextureImporter

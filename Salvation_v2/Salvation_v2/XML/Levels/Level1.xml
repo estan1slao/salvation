@@ -24,6 +24,17 @@
 			</EndPos>
 		</SpikesList>
 	</Spikes>
+	<Buttons>
+		<Button>
+			<Pos>
+				<x>200</x>
+				<y>440</y>
+			</Pos>
+			<Time>
+				5000
+			</Time>
+		</Button>
+	</Buttons>
 	<Design>
 		<Platform>
 			<Pos>
@@ -67,6 +78,17 @@
 				<Height>54</Height>
 			</Size>
 		</Image>
+		<Image>
+			<Pos>
+				<x>202</x>
+				<y>375</y>
+			</Pos>
+			<Path>2D\keyboard\E</Path>
+			<Size>
+				<Width>48</Width>
+				<Height>54</Height>
+			</Size>
+		</Image>
 	</Design>
 	<NextLevel>
 		<Door>
@@ -75,6 +97,7 @@
 				<y>348</y>
 			</Pos>
 			<Level>2</Level>
+			<IsActive>false</IsActive>
 		</Door>
 	</NextLevel>
 	<Parallel>

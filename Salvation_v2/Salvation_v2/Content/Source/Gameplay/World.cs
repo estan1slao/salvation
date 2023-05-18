@@ -19,6 +19,7 @@ namespace Salvation_v2
         public List<Door> doors = new List<Door>();
         PassObject ResetWorld;
         public List<Basic2D> parralelObject = GameGlobals.parallelObject;
+        public List<Button> buttons = GameGlobals.Buttons;
         public List<Basic2D> images = new List<Basic2D>();
 
         public User user;
@@ -29,6 +30,7 @@ namespace Salvation_v2
             GameGlobals.PassMob = AddMob;
 
             parralelObject.Clear();
+            buttons.Clear();
             LoadData(levelNumber);
 
             offset = new Vector2(0, 0);
@@ -114,7 +116,7 @@ namespace Salvation_v2
                 }
             }
 
-            if (xml.Elements("Root").Elements("Spikes") != null)
+            if (xml.Element("Root").Element("Spikes") != null)
             {
                 element = xml.Element("Root").Element("Spikes");
                 var spikeList = (from t in element.Descendants("Spike")
@@ -139,7 +141,7 @@ namespace Salvation_v2
                 }
             }
 
-            if (xml.Elements("Root").Elements("Design") != null)
+            if (xml.Element("Root").Element("Design") != null)
             {
                 element = xml.Element("Root").Element("Design");
                 var platformList = (from t in element.Descendants("Platform")
@@ -162,20 +164,24 @@ namespace Salvation_v2
                 }
             }
 
-            if (xml.Elements("Root").Elements("NextLevel") != null)
+            if (xml.Element("Root").Element("NextLevel") != null)
             {
                 element = xml.Element("Root").Element("NextLevel");
                 var doorList = (from t in element.Descendants("Door")
                                 select t).ToList();
                 for (int i = 0; i < doorList.Count; i++)
                 {
-                    var door = new Door(new Vector2(Convert.ToInt32(doorList[i].Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(doorList[i].Element("Pos").Element("y").Value, Globals.cultureRU)), Convert.ToInt32(doorList[i].Element("Level").Value, Globals.cultureRU));
+                    Door door;
+                    if (doorList[i].Element("IsActive") == null)
+                        door = new Door(new Vector2(Convert.ToInt32(doorList[i].Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(doorList[i].Element("Pos").Element("y").Value, Globals.cultureRU)), Convert.ToInt32(doorList[i].Element("Level").Value, Globals.cultureRU));
+                    else
+                        door = new Door(new Vector2(Convert.ToInt32(doorList[i].Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(doorList[i].Element("Pos").Element("y").Value, Globals.cultureRU)), Convert.ToInt32(doorList[i].Element("Level").Value, Globals.cultureRU), Convert.ToBoolean(doorList[i].Element("IsActive").Value));
                     doors.Add(door);
                 }
 
             }
 
-            if (xml.Elements("Root").Elements("Parallel") != null)
+            if (xml.Element("Root").Element("Parallel") != null)
             {
                 element = xml.Element("Root").Element("Parallel");
                 var parObjList = (from t in element.Descendants("Platform")
@@ -185,6 +191,19 @@ namespace Salvation_v2
                     var parObj = new Basic2D("2D\\Texture\\platform", new Vector2(Convert.ToInt32(parObjList[i].Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(parObjList[i].Element("Pos").Element("y").Value, Globals.cultureRU)),
                         new Vector2(Convert.ToInt32(parObjList[i].Element("Size").Element("Width").Value, Globals.cultureRU), Convert.ToInt32(parObjList[i].Element("Size").Element("Height").Value, Globals.cultureRU)));
                     parralelObject.Add(parObj);
+                }
+            }
+
+            if (xml.Element("Root").Element("Buttons") != null)
+            {
+                element = xml.Element("Root").Element("Buttons");
+                var buttonsList = (from t in element.Descendants("Button")
+                                   select t).ToList();
+                for (int i = 0; i < buttonsList.Count; i++)
+                {
+                    var button = new Button(new Vector2(Convert.ToInt32(buttonsList[i].Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(buttonsList[i].Element("Pos").Element("y").Value, Globals.cultureRU)),
+                        Convert.ToInt32(buttonsList[i].Element("Time").Value));
+                    buttons.Add(button);
                 }
             }
 
@@ -199,6 +218,9 @@ namespace Salvation_v2
         {
             for (int i = 0; i < images.Count; i++)
                 images[i].Draw(this.offset);
+
+            for (int i=0; i < buttons.Count; i++)
+                buttons[i].Draw(this.offset);
 
             for (int i = 0; i < doors.Count; i++)
                 doors[i].Draw(this.offset);

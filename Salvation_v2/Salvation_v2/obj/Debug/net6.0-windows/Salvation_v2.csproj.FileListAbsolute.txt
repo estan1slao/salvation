@@ -71,8 +71,6 @@ C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\
 C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\nunit.framework.dll
 C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\Texture\platform.png
 C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\Texture\platform.xnb
-C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\Door.png
-C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\Door.xnb
 C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\XML\Levels\Level2.xml
 C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\backgrounds\backgroundPar.xnb
 C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\backgrounds\backgroundReal.xnb
@@ -91,3 +89,7 @@ C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\
 C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\tutorial\monster.png
 C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\XML\Levels\Level4.xml
 C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\tutorial\monster.xnb
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\Doors\Door.png
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\Doors\Door.xnb
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\button.png
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\button.xnb

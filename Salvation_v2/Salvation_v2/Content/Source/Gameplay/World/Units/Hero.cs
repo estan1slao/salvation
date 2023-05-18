@@ -1,8 +1,6 @@
 ﻿#region Includes
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Input;
 #endregion
 
 namespace Salvation_v2
@@ -51,9 +49,7 @@ namespace Salvation_v2
             {
                 spaceCounter++;
                 if (spaceCounter == 1)
-                {
                     spaceNow = true;
-                }
                 if (spaceCounter == 2)
                 {
                     deltaSpace = 0;
@@ -87,13 +83,18 @@ namespace Salvation_v2
             if (Globals.Mouse.LeftClick())
                 GameGlobals.PassProjectile(new Bullet(new Vector2(pos.X, pos.Y), this, new Vector2(Globals.Mouse.newMousePos.X, Globals.Mouse.newMousePos.Y) - offset));
 
-            foreach(var door in doors)
+            foreach (var door in doors)
+                if (Globals.Keyboard.GetPress("E") && Globals.IsInside(HitBox, door.HitBox) && door.IsActive)
+                    door.Update(offset, nonCollidingObjects, doors);
+
+            foreach (var button in GameGlobals.Buttons)
             {
-                if (Globals.IsInside(HitBox,door.HitBox) && Globals.Keyboard.GetPress("E"))
-                {
-                    door.Update(offset,nonCollidingObjects,doors);
-                }
+                button.ActiveTime.UpdateTimer();
+                button.Update(offset, nonCollidingObjects, doors);
+                if (Globals.Keyboard.GetPress("E") && Globals.IsInside(HitBox, button.HitBox))
+                    button.ActiveTime.Reset();
             }
+
             if (Globals.Keyboard.GetPress("Q") && timer.Test())
             {
                 timer.Reset();
@@ -102,8 +103,6 @@ namespace Salvation_v2
                 else
                     GameGlobals.isParallel = true;
             }
-            
-
             base.Update(offset, null, nonCollidingObjects, doors);
         }
         public override void Draw(Vector2 offset)
