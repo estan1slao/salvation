@@ -45,12 +45,14 @@
     <None Remove="Content\2D\Units\Simply.png" />
     <None Remove="Content\2D\Units\Speedy.png" />
     <None Remove="Content\ArialFonts\Arial12.spritefont" />
+    <None Remove="Content\ArialFonts\Arial36.spritefont" />
     <None Remove="Content\ArialFonts\Arial52.spritefont" />
     <None Remove="Content\Content.mgcb" />
     <None Remove="XML\Levels\Level1.xml" />
     <None Remove="XML\Levels\Level2.xml" />
     <None Remove="XML\Levels\Level3.xml" />
     <None Remove="XML\Levels\Level4.xml" />
+    <None Remove="XML\Levels\Level5.xml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\2D\backgrounds\backgroundPar.png">
@@ -113,10 +115,16 @@
     <Content Include="Content\ArialFonts\Arial12.spritefont">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\ArialFonts\Arial36.spritefont">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\ArialFonts\Arial52.spritefont">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Content.mgcb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XML\Levels\Level5.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="XML\Levels\Level4.xml">

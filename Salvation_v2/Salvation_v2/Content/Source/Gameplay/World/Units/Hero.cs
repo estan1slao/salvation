@@ -16,8 +16,8 @@ namespace Salvation_v2
         public Hero(string path, Vector2 pos, Vector2 size, Vector2 frames, int ownerID) : base(path, pos, size, frames, ownerID, TypeOfDeath.Everywhere)
         {
             speed = 7f;
-            health = 20;
-            healthMax = 20;
+            health = 50;
+            healthMax = 50;
             HitBox = new Rectangle((int)pos.X, (int)pos.Y, (int)frameSize.X, (int)frameSize.Y);
             frameAnimations = true;
             currentAnimation = 0;

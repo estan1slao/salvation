@@ -19,7 +19,7 @@ namespace Salvation_v2
         int playState;
         World world;
         int levelNumber;
-        bool[] IsResets = new bool[6]; 
+        bool[] IsResets = new bool[10]; 
         public GamePlay(int levelNumber)
         {
             playState = 0;
@@ -39,6 +39,8 @@ namespace Salvation_v2
             if (levelNumber == 4)
                 LoadLevel(levelNumber);
             if (levelNumber == 5)
+                LoadLevel(levelNumber);
+            if (levelNumber == 6)
                 LoadLevel(levelNumber);
         }
 

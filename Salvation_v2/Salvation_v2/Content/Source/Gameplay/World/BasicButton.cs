@@ -18,9 +18,15 @@ namespace Salvation_v2
             foreach (var door in doors)
             {
                 if (!ActiveTime.Test())
+                {
                     door.IsActive = true;
+                    isPressed = true;
+                }
                 else
+                {
                     door.IsActive = false;
+                    isPressed = false;
+                }  
             }
             base.Update(offset, nonCollidingObjects, doors);
         }
