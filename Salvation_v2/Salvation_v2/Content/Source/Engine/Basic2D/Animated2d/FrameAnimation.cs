@@ -8,14 +8,13 @@ namespace Salvation_v2
 {
     public class FrameAnimation
     {
-        public bool hasFired;
-        public int frames, currentFrame, maxPasses, currentPass, fireFrame;
-        public string name;
-        public Vector2 sheet, startFrame, sheetFrame, spriteDims;
-        public NTimer frameTimer;
-        public PassObject FireAction;
+        public Vector2 spriteDims;
+        public string Name;
+        int frames, currentFrame, maxPasses, currentPass;
+        Vector2 sheet, startFrame, sheetFrame;
+        NTimer frameTimer;
 
-        public FrameAnimation(Vector2 SpriteDims, Vector2 sheetDims, Vector2 start, int totalframes, int timePerFrame, int MAXPASSES, string NAME = "")
+        public FrameAnimation(Vector2 SpriteDims, Vector2 sheetDims, Vector2 start, int totalframes, int timePerFrame, int maxPasses, string name = "")
         {
             spriteDims = SpriteDims;
             sheet = sheetDims;
@@ -24,29 +23,9 @@ namespace Salvation_v2
             frames = totalframes;
             currentFrame = 0;
             frameTimer = new NTimer(timePerFrame);
-            maxPasses = MAXPASSES;
+            this.maxPasses = maxPasses;
             currentPass = 0;
-            name = NAME;
-            FireAction = null;
-            hasFired = false;
-            fireFrame = 0;
-        }
-
-        public FrameAnimation(Vector2 SpriteDims, Vector2 sheetDims, Vector2 start, int totalframes, int timePerFrame, int MAXPASSES, int FIREFRAME, PassObject FIREACTION, string NAME = "")
-        {
-            spriteDims = SpriteDims;
-            sheet = sheetDims;
-            startFrame = start;
-            sheetFrame = new Vector2(start.X, start.Y);
-            frames = totalframes;
-            currentFrame = 0;
-            frameTimer = new NTimer(timePerFrame);
-            maxPasses = MAXPASSES;
-            currentPass = 0;
-            name = NAME;
-            FireAction = FIREACTION;
-            hasFired = false;
-            fireFrame = FIREFRAME;
+            Name = name;
         }
 
         #region Properties
@@ -77,17 +56,11 @@ namespace Salvation_v2
                         if (currentFrame >= frames)
                         {
                             currentFrame = 0;
-                            hasFired = false;
                             sheetFrame = new Vector2(startFrame.X, startFrame.Y);
                         }
                     }
                     frameTimer.Reset();
                 }
-            }
-            if (FireAction != null && fireFrame == currentFrame && !hasFired)
-            {
-                FireAction(null);
-                hasFired = true;
             }
         }
 
@@ -96,7 +69,6 @@ namespace Salvation_v2
             currentFrame = 0;
             currentPass = 0;
             sheetFrame = new Vector2(startFrame.X, startFrame.Y);
-            hasFired = false;
         }
 
         public bool IsAtEnd() => currentFrame + 1 >= frames;
@@ -105,7 +77,6 @@ namespace Salvation_v2
         public void Draw(Texture2D myModel, Vector2 dims, Vector2 imageDims, Vector2 screenShift, Vector2 pos, float ROT, Color color, SpriteEffects spriteEffect)
         {
             Globals.SpriteBatch.Draw(myModel, new Rectangle((int)((pos.X + screenShift.X)), (int)((pos.Y + screenShift.Y)), (int)Math.Ceiling(dims.X), (int)Math.Ceiling(dims.Y)), new Rectangle((int)(sheetFrame.X * imageDims.X), (int)(sheetFrame.Y * imageDims.Y), (int)imageDims.X, (int)imageDims.Y), color, ROT, imageDims / 2, spriteEffect, 0);
-            //Globals.SpriteBatch.Draw(Texture, pos, new Rectangle(currentFrame.X * frameWidth, currentFrame.Y * frameHeight, frameWidth, frameHeight), Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
         }
 
     }

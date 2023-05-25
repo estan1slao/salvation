@@ -14,12 +14,6 @@ namespace Salvation_v2
         public bool frameAnimations;
         public int currentAnimation = 0;
 
-        public Animated2d(string PATH, Vector2 POS, Vector2 DIMS, Vector2 FRAMES, Color COLOR) : base(PATH, POS, DIMS)
-        {
-            Frames = new Vector2(FRAMES.X, FRAMES.Y);
-            color = COLOR;
-        }
-
         #region Properties
         public Vector2 Frames
         {
@@ -36,26 +30,31 @@ namespace Salvation_v2
         }
         #endregion
 
+        public Animated2d(string path, Vector2 pos, Vector2 size, Vector2 frames, Color color) : base(path, pos, size)
+        {
+            Frames = new Vector2(frames.X, frames.Y);
+            this.color = color;
+        }
 
-        public override void Update(Vector2 OFFSET, List<Basic2D> nonCollidingObjects, List<Door> doors)
+        public override void Update(Vector2 offset, List<Basic2D> nonCollidingObjects, List<Door> doors)
         {
             if (frameAnimations && frameAnimationList != null && frameAnimationList.Count > currentAnimation)
                 frameAnimationList[currentAnimation].Update();
 
-            base.Update(OFFSET, nonCollidingObjects, doors);
+            base.Update(offset, nonCollidingObjects, doors);
         }
 
-        public virtual int GetAnimationFromName(string ANIMATIONNAME)
+        public virtual int GetAnimationFromName(string animationName)
         {
             for (int i = 0; i < frameAnimationList.Count; i++)
-                if (frameAnimationList[i].name == ANIMATIONNAME)
+                if (frameAnimationList[i].Name == animationName)
                     return i;
             return -1;
         }
 
-        public virtual void SetAnimationByName(string NAME)
+        public virtual void SetAnimationByName(string name)
         {
-            int tempAnimation = GetAnimationFromName(NAME);
+            int tempAnimation = GetAnimationFromName(name);
             if (tempAnimation != -1)
             {
                 if (tempAnimation != currentAnimation)

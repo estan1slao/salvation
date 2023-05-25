@@ -60,12 +60,9 @@ namespace Salvation_v2
                         units[i].GetHit(1);
                     return true;
                 }
-                //else if ()
             }
             for(int i = 0; i < nonCollidingObjects.Count; i++)
             {
-                if (nonCollidingObjects[i] is Hero)
-                    continue;
                 if (Globals.IsInside(pos, nonCollidingObjects[i].HitBox))
                     return true;
             }

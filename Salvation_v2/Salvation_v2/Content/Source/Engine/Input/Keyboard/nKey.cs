@@ -19,11 +19,11 @@ namespace Salvation_v2
         public int state;
         public string key, print, display;
 
-        public NKey(string KEY, int STATE)
+        public NKey(string key, int state)
         {
-            key = KEY;
-            state = STATE;
-            MakePrint(key);
+            this.key = key;
+            this.state = state;
+            MakePrint(this.key);
         }
 
         public virtual void Update()
@@ -34,7 +34,6 @@ namespace Salvation_v2
         public void MakePrint(string KEY)
         {
             display = KEY;
-
             string tempStr = "";
 
             if (KeyboardHandlerLetter(KEY))

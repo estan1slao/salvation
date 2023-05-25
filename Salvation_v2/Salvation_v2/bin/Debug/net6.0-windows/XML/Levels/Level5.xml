@@ -23,22 +23,28 @@
 		</Speedy>
 		<Speedy>
 			<Pos>
-				<x>1000</x>
+				<x>900</x>
 				<y>250</y>
 			</Pos>
 		</Speedy>
 		<Speedy>
 			<Pos>
-				<x>1100</x>
+				<x>1000</x>
 				<y>250</y>
 			</Pos>
 		</Speedy>
 		<Simply>
 			<Pos>
-				<x>900</x>
+				<x>800</x>
 				<y>250</y>
 			</Pos>
 		</Simply>
+		<Armored>
+			<Pos>
+				<x>1100</x>
+				<y>0</y>
+			</Pos>
+		</Armored>
 	</Mob>
 	<Spikes>
 		<Spike>

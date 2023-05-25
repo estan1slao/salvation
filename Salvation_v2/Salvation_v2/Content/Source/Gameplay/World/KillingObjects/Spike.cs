@@ -23,7 +23,6 @@ namespace Salvation_v2
                 if (IsTouching(units[i]) || Globals.IsInside(pos,units[i].HitBox))
                     units[i].GetHit(1);
             }  
-            //base.Update(offset, nonCollidingObjects);
         }
 
         public override void Draw(Vector2 offset)

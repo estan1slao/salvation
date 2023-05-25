@@ -30,7 +30,6 @@ namespace Salvation_v2
             if (timer.Timer >= 100)
                 timer.Reset();
             timer.UpdateTimer();
-            checkScroll = false;
             Vector2 nextPos = new Vector2(pos.X, pos.Y);
             pos -= offset;
             if (Globals.Keyboard.GetPress("A") && pos.X > 0)
@@ -47,6 +46,7 @@ namespace Salvation_v2
             }
             if (Globals.Keyboard.GetPress("Space") && timer.Test() && pos.Y > 0)
             {
+                timer.Reset();
                 spaceCounter++;
                 if (spaceCounter == 1)
                     spaceNow = true;
@@ -71,6 +71,14 @@ namespace Salvation_v2
             }
             if (pos.Y + frameSize.Y >= Globals.screenHeight)
                 spaceCounter = 0;
+            if (Globals.Keyboard.GetPress("Q") && timer.Test())
+            {
+                timer.Reset();
+                if (GameGlobals.isParallel)
+                    GameGlobals.isParallel = false;
+                else
+                    GameGlobals.isParallel = true;
+            }
             foreach (var obj in nonCollidingObjects)
             {
                 if (obj == this) continue;
@@ -95,14 +103,7 @@ namespace Salvation_v2
                     button.ActiveTime.Reset();
             }
 
-            if (Globals.Keyboard.GetPress("Q") && timer.Test())
-            {
-                timer.Reset();
-                if (GameGlobals.isParallel)
-                    GameGlobals.isParallel = false;
-                else
-                    GameGlobals.isParallel = true;
-            }
+
             base.Update(offset, null, nonCollidingObjects, doors);
         }
         public override void Draw(Vector2 offset)

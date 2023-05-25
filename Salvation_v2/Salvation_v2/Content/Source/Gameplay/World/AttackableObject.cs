@@ -1,5 +1,6 @@
 ﻿#region Includes
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 #endregion
 
@@ -10,8 +11,7 @@ namespace Salvation_v2
         public int ownerID;
         public bool dead;
         public float speed, hitDist, health, healthMax, visibilityRadius;
-        public bool checkScroll = false;
-        public TypeOfDeath diesIn = TypeOfDeath.Everywhere;
+        public TypeOfDeath diesIn;
         public AttackableObject(string path, Vector2 pos, Vector2 size, Vector2 frames, int ownerID, TypeOfDeath diesIn) : base(path, pos, size, frames, Color.White)
         {
             dead = false;
@@ -34,10 +34,7 @@ namespace Salvation_v2
         {
             health -= damage;
             if (health <= 0)
-            {
                 dead = true;
-            }
-
         }
         public override void Draw(Vector2 offset)
         {
@@ -77,42 +74,32 @@ namespace Salvation_v2
                    HitBox.Left < sprite.HitBox.Right;
         }
 
-        protected bool IsTouching(Basic2D sprite)
-        {
-            return IsTouchingLeft(sprite) || IsTouchingRight(sprite) || IsTouchingTop(sprite) || IsTouchingBottom(sprite);
-        }
+        protected bool IsTouching(Basic2D sprite) =>
+            IsTouchingLeft(sprite) || IsTouchingRight(sprite) || IsTouchingTop(sprite) || IsTouchingBottom(sprite);
 
-        public void MoveObjectRight(List<Basic2D> nonCollidingObjects, Vector2 nextPos)
+        public void MoveObjectRight(List<Basic2D> nonCollidingObjects, Vector2 nextPos) =>
+            MoveObjectAside(nonCollidingObjects, nextPos, IsTouchingLeft);
+
+        public void MoveObjectLeft(List<Basic2D> nonCollidingObjects, Vector2 nextPos) =>
+            MoveObjectAside(nonCollidingObjects, nextPos, IsTouchingRight);
+
+        public void MoveObjectBottom(List<Basic2D> nonCollidingObjects, Vector2 nextPos) =>
+            MoveObjectAside(nonCollidingObjects, nextPos, IsTouchingTop);
+
+        private void MoveObjectAside(List<Basic2D> nonCollidingObjects, Vector2 nextPos, Func<Basic2D, bool> IsTouch)
         {
-            var isTouching = false;
-            foreach (var obj in nonCollidingObjects)
+            var isTouch = false;
+            foreach (var sprite in nonCollidingObjects)
             {
-                if ((obj == this) || obj is Hero)
+                if (sprite == this)
                     continue;
-                if (IsTouchingLeft(obj))
+                if (IsTouch(sprite))
                 {
-                    isTouching = true;
+                    isTouch = true;
                     break;
                 }
             }
-            if (!isTouching)
-                pos = nextPos;
-        }
-
-        public void MoveObjectLeft(List<Basic2D> nonCollidingObjects, Vector2 nextPos)
-        {
-            var isTouching = false;
-            foreach (var obj in nonCollidingObjects)
-            {
-                if ((obj == this) || obj is Hero)
-                    continue;
-                if (IsTouchingRight(obj))
-                {
-                    isTouching = true;
-                    break;
-                }
-            }
-            if (!isTouching)
+            if (!isTouch)
                 pos = nextPos;
         }
 
@@ -121,48 +108,22 @@ namespace Salvation_v2
             var isTouchingBottom = false;
             var isTouchingLeft = false;
             var isTouchingRight = false;
-            foreach (var obj in nonCollidingObjects)
+            foreach (var sprite in nonCollidingObjects)
             {
-                if ((obj == this) || obj is Hero)
+                if (sprite == this)
                     continue;
-                if (IsTouchingBottom(obj))
-                {
-                    isTouchingBottom = true;
-                    break;
-                }
-                if (IsTouchingLeft(obj))
-                {
-                    isTouchingLeft = true;
-                    break;
-                }
-                if (IsTouchingRight(obj))
-                {
-                    isTouchingRight = true;
-                    break;
-                }
+                if (IsTouchingBottom(sprite))
+                { isTouchingBottom = true; break; }
+                if (IsTouchingLeft(sprite))
+                { isTouchingLeft = true; break; }
+                if (IsTouchingRight(sprite))
+                { isTouchingRight = true; break; }
             }
             if (isTouchingBottom)
                 pos.X = nextPos.X;
             if (isTouchingLeft || isTouchingRight)
                 pos.Y = nextPos.Y;
             if (!(isTouchingBottom || isTouchingLeft || isTouchingRight))
-                pos = nextPos;
-        }
-
-        public void MoveObjectBottom(List<Basic2D> nonCollidingObjects, Vector2 nextPos)
-        {
-            var isTouching = false;
-            foreach (var obj in nonCollidingObjects)
-            {
-                if ((obj == this) || obj is Hero)
-                    continue;
-                if (IsTouchingTop(obj))
-                {
-                    isTouching = true;
-                    break;
-                }
-            }
-            if (!isTouching)
                 pos = nextPos;
         }
         #endregion

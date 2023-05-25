@@ -26,6 +26,14 @@ namespace Salvation_v2
 
         private const int deltaPixels = 8;
 
+        #region Properties
+        public MouseState First { get => firstMouse; }
+
+        public MouseState New { get => newMouse; }
+
+        public MouseState Old { get => oldMouse; }
+        #endregion
+
         public NMouseControl()
         {
             dragging = false;
@@ -39,29 +47,7 @@ namespace Salvation_v2
             firstMousePos = new Vector2(newMouse.Position.X, newMouse.Position.Y);
 
             GetMouseAndAdjust();
-
-            //screenLoc = new Vector2((int)(systemCursorPos.X/Globals.screenWidth), (int)(systemCursorPos.Y/Globals.screenHeight));
-
         }
-
-        #region Properties
-
-        public MouseState First
-        {
-            get { return firstMouse; }
-        }
-
-        public MouseState New
-        {
-            get { return newMouse; }
-        }
-
-        public MouseState Old
-        {
-            get { return oldMouse; }
-        }
-
-        #endregion
 
         public void Update()
         {
@@ -89,7 +75,7 @@ namespace Salvation_v2
 
         public int GetMouseWheelChange() => newMouse.ScrollWheelValue - oldMouse.ScrollWheelValue;
 
-        public Vector2 GetScreenPos(MouseState MOUSE) => new Vector2(MOUSE.Position.X, MOUSE.Position.Y);
+        public Vector2 GetScreenPos(MouseState mouse) => new Vector2(mouse.Position.X, mouse.Position.Y);
 
         public virtual bool LeftClick() =>
             newMouse.LeftButton == ButtonState.Pressed && 
@@ -163,11 +149,6 @@ namespace Salvation_v2
                 return true;
             }
             return false;
-        }
-
-        public void SetFirst()
-        {
-
         }
     }
 }

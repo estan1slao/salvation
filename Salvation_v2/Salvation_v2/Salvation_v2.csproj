@@ -41,6 +41,7 @@
     <None Remove="Content\2D\Texture\platform.png" />
     <None Remove="Content\2D\tutorial\monster.png" />
     <None Remove="Content\2D\tutorial\parallel.png" />
+    <None Remove="Content\2D\Units\Armored.png" />
     <None Remove="Content\2D\Units\hero.png" />
     <None Remove="Content\2D\Units\Simply.png" />
     <None Remove="Content\2D\Units\Speedy.png" />
@@ -101,6 +102,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\2D\tutorial\parallel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\2D\Units\Armored.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\2D\Units\hero.png">

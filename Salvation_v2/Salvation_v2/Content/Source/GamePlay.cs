@@ -16,13 +16,11 @@ namespace Salvation_v2
 {
     public class GamePlay
     {
-        int playState;
         World world;
         int levelNumber;
         bool[] IsResets = new bool[10]; 
         public GamePlay(int levelNumber)
         {
-            playState = 0;
             this.levelNumber = levelNumber;
             ResetWorld(null);
         }
@@ -30,18 +28,7 @@ namespace Salvation_v2
         public virtual void Update(int levelNumber)
         {
             this.levelNumber = levelNumber;
-            if (levelNumber == 1)
-                LoadLevel(levelNumber);
-            if (levelNumber == 2)
-                LoadLevel(levelNumber);
-            if (levelNumber == 3)
-                LoadLevel(levelNumber);
-            if (levelNumber == 4)
-                LoadLevel(levelNumber);
-            if (levelNumber == 5)
-                LoadLevel(levelNumber);
-            if (levelNumber == 6)
-                LoadLevel(levelNumber);
+            LoadLevel(levelNumber);
         }
 
         private void LoadLevel(int levelNumber)
@@ -61,10 +48,7 @@ namespace Salvation_v2
 
         public virtual void Draw()
         {
-            if (playState == 0)
-            {
-                world.Draw(Vector2.Zero);
-            }
+            world.Draw(Vector2.Zero);
         }
     }
 }

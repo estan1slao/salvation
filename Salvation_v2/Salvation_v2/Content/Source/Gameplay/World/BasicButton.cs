@@ -5,8 +5,8 @@ namespace Salvation_v2
 {
     public class BasicButton : Basic2D
     {
-        public NTimer ActiveTime;
-        public bool isPressed;
+        public NTimer ActiveTime { get; private set; }
+        public bool isPressed { get; private set; }
         public BasicButton(string path, Vector2 pos, Vector2 size, int mSecond) : base(path, pos, size)
         {
             ActiveTime = new NTimer(mSecond,true);

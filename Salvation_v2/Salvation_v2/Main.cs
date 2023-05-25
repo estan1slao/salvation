@@ -15,19 +15,14 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Salvation_v2
 {
-    public class Game1 : Game
+    public class Main : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-
         GamePlay gamePlay;
         Basic2D cursor;
 
-        #region Test
-        Basic2D texture;
-        Basic2D spike;
-        #endregion
-        public Game1()
+        public Main()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -56,11 +51,6 @@ namespace Salvation_v2
             cursor = new Basic2D("2D\\interface\\cursor",new Vector2(0,0), new Vector2(30,40));
             Globals.Keyboard = new NKeyboard();
             Globals.Mouse = new NMouseControl();
-
-            #region Test
-            //texture = new Basic2D("2D\\simplyNoAnim", new Vector2(200, 600), new Vector2(100, 100));
-            //spike = new Spike(new Vector2(700, Globals.screenHeight - 25), new Vector2(25, 25), 0, new Vector2(1, 1), 0);
-            #endregion
 
             gamePlay = new GamePlay(GameGlobals.levelNumber);
         }
@@ -93,11 +83,6 @@ namespace Salvation_v2
                 Globals.SpriteBatch.Draw(Content.Load<Texture2D>("2D\\backgrounds\\backgroundReal"), new Vector2(0, 0), Color.White);
             gamePlay.Draw();
             cursor.Draw(new Vector2(Globals.Mouse.newMousePos.X, Globals.Mouse.newMousePos.Y), new Vector2(0, 0), Color.White);
-
-            #region Test
-            //texture.Draw(new Vector2(0, 0));
-            //spike.Draw(Vector2.Zero);
-            #endregion
 
             Globals.SpriteBatch.End();
             base.Draw(gameTime);

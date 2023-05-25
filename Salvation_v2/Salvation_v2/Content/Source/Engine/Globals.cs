@@ -57,7 +57,7 @@ namespace Salvation_v2
             if (Pos.Y - focus.Y != 0)
             {
                 h = (float)Math.Sqrt(Math.Pow(Pos.X - focus.X, 2) + Math.Pow(Pos.Y - focus.Y, 2));
-                sineTheta = (float)(Math.Abs(Pos.Y - focus.Y) / h); //* ((item.Pos.Y-focus.Y)/(Math.Abs(item.Pos.Y-focus.Y))));
+                sineTheta = (float)(Math.Abs(Pos.Y - focus.Y) / h);
             }
             else
             {
@@ -67,7 +67,6 @@ namespace Salvation_v2
 
             angle = (float)Math.Asin(sineTheta);
 
-            // Drawing diagonial lines here.
             //Quadrant 2
             if (Pos.X - focus.X > 0 && Pos.Y - focus.Y > 0)
                 angle = (float)(Math.PI * 3 / 2 + angle);

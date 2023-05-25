@@ -96,3 +96,5 @@ C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\
 C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\ArialFonts\Arial36.spritefont
 C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\ArialFonts\Arial36.xnb
 C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\XML\Levels\Level5.xml
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\Units\Armored.png
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\Units\Armored.xnb

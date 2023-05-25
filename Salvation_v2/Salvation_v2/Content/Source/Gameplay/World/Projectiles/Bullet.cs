@@ -18,7 +18,6 @@ namespace Salvation_v2
     {
         public Bullet(Vector2 pos, Unit owner, Vector2 target) : base("2D\\bullet", pos + owner.size / 2, new Vector2(14, 25), owner, target)
         {
-
         }
 
         public override void Update(Vector2 offset, List<AttackableObject> units, List<Basic2D> nonCollidingObjects)

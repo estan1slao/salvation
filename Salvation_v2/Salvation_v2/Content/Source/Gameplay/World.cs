@@ -10,17 +10,17 @@ namespace Salvation_v2
 {
     public class World
     {
-        public Vector2 offset;
-        public List<Projectile2D> projectiles = new List<Projectile2D>();
-        public List<AttackableObject> allObjects = new List<AttackableObject>();
-        public UI UI;
-        public List<Basic2D> nonCollidingObjects = new List<Basic2D>();
-        public List<Spike> spikes = new List<Spike>();
-        public List<Door> doors = new List<Door>();
+        Vector2 offset;
+        List<Projectile2D> projectiles = new List<Projectile2D>();
+        List<AttackableObject> attackObjects = new List<AttackableObject>();
+        UI UI;
+        List<Basic2D> nonCollidingObjects = new List<Basic2D>();
+        List<Spike> spikes = new List<Spike>();
+        List<Door> doors = new List<Door>();
         PassObject ResetWorld;
-        public List<Basic2D> parralelObject = GameGlobals.parallelObject;
+        List<Basic2D> parralelObject = GameGlobals.parallelObject;
         public List<Button> buttons = GameGlobals.Buttons;
-        public List<Basic2D> images = new List<Basic2D>();
+        List<Basic2D> images = new List<Basic2D>();
 
         public User user;
         public World(PassObject resetWorld, int levelNumber)
@@ -28,16 +28,10 @@ namespace Salvation_v2
             ResetWorld = resetWorld;
             GameGlobals.PassProjectile = AddProjectile;
             GameGlobals.PassMob = AddMob;
-
             parralelObject.Clear();
             buttons.Clear();
             LoadData(levelNumber);
-
             offset = new Vector2(0, 0);
-
-            //user.units.Add(new Simply(new Vector2(Globals.screenWidth / 2 - 44, Globals.screenHeight / 2 - 54), 1));
-            //user.units.Add(new Simply(new Vector2(Globals.screenWidth - 88, Globals.screenHeight - 104), 2));
-
             UI = new UI();
         }
 
@@ -45,8 +39,8 @@ namespace Salvation_v2
         {
             if (!user.hero.dead)
             {
-                allObjects.Clear();
-                allObjects.AddRange(user.GetAllObjects());
+                attackObjects.Clear();
+                attackObjects.AddRange(user.GetAllObjects());
                 if (GameGlobals.isParallel)
                     user.Update(user, offset, parralelObject, doors);
                 else
@@ -55,18 +49,18 @@ namespace Salvation_v2
                 for (int i = 0; i < projectiles.Count; i++)
                 {
                     if (GameGlobals.isParallel)
-                        projectiles[i].Update(offset, allObjects, parralelObject);
+                        projectiles[i].Update(offset, attackObjects, parralelObject);
                     else
-                        projectiles[i].Update(offset, allObjects, nonCollidingObjects);
+                        projectiles[i].Update(offset, attackObjects, nonCollidingObjects);
                     if (projectiles[i].done)
                     {
                         projectiles.RemoveAt(i);
                         i--;
                     }
                 }
-                allObjects.Add(user.hero);
+                attackObjects.Add(user.hero);
                 for (int i = 0; i < spikes.Count; i++)
-                    spikes[i].Update(offset, allObjects);
+                    spikes[i].Update(offset, attackObjects);
             }
             else
             {
@@ -93,8 +87,6 @@ namespace Salvation_v2
             if (xml.Element("Root").Element("User") != null)
                 element = xml.Element("Root").Element("User");
             user = new User(0, element);
-            //nonCollidingObjects.Add(user.hero);
-            //parralelObject.Add(user.hero);
 
             element = null;
             if (xml.Element("Root").Element("Mob") != null)
@@ -113,6 +105,13 @@ namespace Salvation_v2
                 {
                     var speedy = new Speedy(new Vector2(Convert.ToInt32(speedyList[i].Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(speedyList[i].Element("Pos").Element("y").Value, Globals.cultureRU)), new Vector2(8, 6), i + 1, TypeOfDeath.OnlyParallel);
                     user.units.Add(speedy);
+                }
+                var armoredList = (from t in element.Descendants("Armored")
+                                   select t).ToList();
+                for (int i = 0; i < armoredList.Count; i++)
+                {
+                    var armored = new Armored(new Vector2(Convert.ToInt32(armoredList[i].Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(armoredList[i].Element("Pos").Element("y").Value, Globals.cultureRU)), new Vector2(6, 4), i + 1, TypeOfDeath.Everywhere);
+                    user.units.Add(armored);
                 }
             }
 
@@ -206,12 +205,6 @@ namespace Salvation_v2
                     buttons.Add(button);
                 }
             }
-
-            #region Test
-            //nonCollidingObjects.Add(new Basic2D("2D\\simplyNoAnim", new Vector2(200, 600), new Vector2(100, 100)));
-            //var spikeObj = new Spike(new Vector2(700, Globals.screenHeight - 25), new Vector2(25, 25), 0, new Vector2(1, 1), 0);
-            //spikes.Add(spikeObj);
-            #endregion
         }
 
         public virtual void Draw(Vector2 offset)

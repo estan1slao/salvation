@@ -21,6 +21,12 @@
 				<y>660</y>
 			</Pos>
 		</Simply>
+		<Armored>
+			<Pos>
+				<x>1700</x>
+				<y>0</y>
+			</Pos>
+		</Armored>
 	</Mob>
 	<Spikes>
 		<Spike>

@@ -33,24 +33,13 @@ namespace Salvation_v2
             if (Globals.GetDistance(pos, enemy.hero.pos) < visibilityRadius)
             {
                 var isInside = false;
-                var box = new Rectangle(new Point((int)pos.X, (int)pos.Y), new Point((int)(enemy.hero.pos.X - pos.X), (int)(enemy.hero.pos.Y- pos.Y)));
-                if (box.Width < 0 && box.Height < 0)
-                    box = new Rectangle(new Point((int)enemy.hero.pos.X, (int)(enemy.hero.pos.Y)), new Point(-box.Width, -box.Height));
-                else if (box.Width >= 0 && box.Height < 0)
-                    box = new Rectangle(new Point((int)pos.X, (int)enemy.hero.pos.Y), new Point(box.Width, -box.Height));
-                else if (box.Width < 0 && box.Height >= 0)
-                    box = new Rectangle(new Point((int)enemy.hero.pos.X, (int)pos.Y), new Point(-box.Width, box.Height));
+                Rectangle box = GetBox(enemy);
                 for (int i = 0; i < nonCollidingObjects.Count; i++)
                 {
-                    if (nonCollidingObjects[i] is Hero) continue;
                     if (Globals.IsInside(box, nonCollidingObjects[i].HitBox))
-                    {
-                        isInside = true;
-                        break;
-                    }
+                        { isInside = true; break; }
                 }
                 var nextPos = new Vector2(pos.X, pos.Y);
-
                 if (!isInside)
                 {
                     if (direction.X > 0)
@@ -67,13 +56,15 @@ namespace Salvation_v2
                         SetAnimationByName("WalkLeft");
                     }
                 }
-                //pos = nextPos;
+                else if (direction.X > 0)
+                    SetAnimationByName("StandRight");
+                else
+                    SetAnimationByName("StandLeft");
             }
             else if (direction.X > 0)
                 SetAnimationByName("StandRight");
             else
                 SetAnimationByName("StandLeft");
-
 
             if (Globals.GetDistance(pos, enemy.hero.pos) < hitDist)
             {
@@ -82,8 +73,19 @@ namespace Salvation_v2
                 else
                     SetAnimationByName("AttackLeft");
                 enemy.hero.GetHit(1);
-                //dead = true;
             }
+        }
+
+        private Rectangle GetBox(Player enemy)
+        {
+            var box = new Rectangle(new Point((int)pos.X, (int)pos.Y), new Point((int)(enemy.hero.pos.X - pos.X), (int)(enemy.hero.pos.Y - pos.Y)));
+            if (box.Width < 0 && box.Height < 0)
+                box = new Rectangle(new Point((int)enemy.hero.pos.X, (int)(enemy.hero.pos.Y)), new Point(-box.Width, -box.Height));
+            else if (box.Width >= 0 && box.Height < 0)
+                box = new Rectangle(new Point((int)pos.X, (int)enemy.hero.pos.Y), new Point(box.Width, -box.Height));
+            else if (box.Width < 0 && box.Height >= 0)
+                box = new Rectangle(new Point((int)enemy.hero.pos.X, (int)pos.Y), new Point(-box.Width, box.Height));
+            return box;
         }
 
         public override void Draw(Vector2 offset)

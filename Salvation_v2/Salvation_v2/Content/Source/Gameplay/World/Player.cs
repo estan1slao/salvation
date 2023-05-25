@@ -43,10 +43,8 @@ namespace Salvation_v2
             units.Add(unit);
         }
 
-        public virtual void ChangeScore(int score)
-        {
+        public virtual void ChangeScore(int score) =>
             GameGlobals.score += score;
-        }
 
         public virtual List<AttackableObject> GetAllObjects()
         {
@@ -58,8 +56,7 @@ namespace Salvation_v2
         public virtual void LoadData(XElement data)
         {
             if (data.Element("Hero") != null)
-                hero = new Hero("2D\\Units\\hero", new Vector2(Convert.ToInt32(data.Element("Hero").Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(data.Element("Hero").Element("Pos").Element("y").Value, Globals.cultureRU)), new Vector2(97, 126), new Vector2(8, 2), ID);
-                
+                hero = new Hero("2D\\Units\\hero", new Vector2(Convert.ToInt32(data.Element("Hero").Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(data.Element("Hero").Element("Pos").Element("y").Value, Globals.cultureRU)), new Vector2(87, 113), new Vector2(8, 2), ID);
         }
 
         public virtual void Draw(Vector2 offset)

@@ -11,20 +11,9 @@ namespace Salvation_v2
 {
     public class NTimer
     {
-        public bool complete;
+        private bool Complete;
         protected int mSec;
         protected TimeSpan timer = new TimeSpan();
-
-        public NTimer(int m)
-        {
-            complete = false;
-            mSec = m;
-        }
-        public NTimer(int m, bool STARTLOADED)
-        {
-            complete = STARTLOADED;
-            mSec = m;
-        }
 
         public int MSec
         {
@@ -36,15 +25,26 @@ namespace Salvation_v2
             get { return (int)timer.TotalMilliseconds; }
         }
 
+        public NTimer(int mSec)
+        {
+            Complete = false;
+            this.mSec = mSec;
+        }
+        public NTimer(int mSec, bool startLoaded)
+        {
+            Complete = startLoaded;
+            this.mSec = mSec;
+        }
+
         public void UpdateTimer() => timer += Globals.GameTime.ElapsedGameTime;
 
-        public void UpdateTimer(float SPEED) => timer += TimeSpan.FromTicks((long)(Globals.GameTime.ElapsedGameTime.Ticks * SPEED));
+        public void UpdateTimer(float speed) => timer += TimeSpan.FromTicks((long)(Globals.GameTime.ElapsedGameTime.Ticks * speed));
 
-        public virtual void AddToTimer(int MSEC) => timer += TimeSpan.FromMilliseconds((long)(MSEC));
+        public virtual void AddToTimer(int mSec) => timer += TimeSpan.FromMilliseconds((long)(mSec));
 
         public bool Test()
         {
-            if(timer.TotalMilliseconds >= mSec || complete)
+            if(timer.TotalMilliseconds >= mSec || Complete)
                 return true;
             else
                 return false;
@@ -55,24 +55,24 @@ namespace Salvation_v2
             timer = timer.Subtract(new TimeSpan(0, 0, mSec/60000, mSec/1000, mSec%1000));
             if(timer.TotalMilliseconds < 0)
                 timer = TimeSpan.Zero;
-            complete = false;
+            Complete = false;
         }
 
-        public void Reset(int NEWTIMER)
+        public void Reset(int newTimer)
         {
             timer = TimeSpan.Zero;
-            MSec = NEWTIMER;
-            complete = false;
+            MSec = newTimer;
+            Complete = false;
         }
 
         public void ResetToZero()
         {
             timer = TimeSpan.Zero;
-            complete = false;
+            Complete = false;
         }
 
-        public void SetTimer(TimeSpan TIME) => timer = TIME;
+        public void SetTimer(TimeSpan time) => timer = time;
 
-        public virtual void SetTimer(int MSEC) => timer = TimeSpan.FromMilliseconds((long)(MSEC));
+        public virtual void SetTimer(int mSec) => timer = TimeSpan.FromMilliseconds((long)(mSec));
     }
 }

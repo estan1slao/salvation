@@ -1,2 +1,2 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/ArialFonts/Arial36.spritefont","C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/bin/Windows/ArialFonts/Arial36.xnb","FontDescriptionProcessor","SpriteFontContent",2068,136223,0,3130419
+"C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/2D/Units/Armored.png","C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/Content/bin/Windows/2D/Units/Armored.xnb","TextureProcessor","Texture2DContent",57514,845725,0,247864

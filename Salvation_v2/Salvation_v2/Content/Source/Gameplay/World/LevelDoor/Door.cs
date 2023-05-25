@@ -5,7 +5,7 @@ namespace Salvation_v2
 {
     public class Door : LevelSwitch
     {
-        public bool IsActive;
+        public bool IsActive { get; set; }
         public Door(Vector2 pos, int nextLevel) : base("2D\\Doors\\Door", pos, new Vector2(120, 192), new Vector2(2, 1), nextLevel)
         {
             IsActive = true;
