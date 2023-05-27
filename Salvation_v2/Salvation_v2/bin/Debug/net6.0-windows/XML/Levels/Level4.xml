@@ -4,7 +4,7 @@
 		<Hero>
 			<Pos>
 				<x>0</x>
-				<y>0</y>
+				<y>880</y>
 			</Pos>
 		</Hero>
 	</User>
@@ -12,15 +12,21 @@
 		<Simply>
 			<Pos>
 				<x>1300</x>
-				<y>660</y>
+				<y>880</y>
 			</Pos>
 		</Simply>
 		<Speedy>
 			<Pos>
 				<x>910</x>
-				<y>660</y>
+				<y>880</y>
 			</Pos>
 		</Speedy>
+		<Armored>
+			<Pos>
+				<x>1750</x>
+				<y>880</y>
+			</Pos>
+		</Armored>
 	</Mob>
 	<Spikes>
 		<Spike>

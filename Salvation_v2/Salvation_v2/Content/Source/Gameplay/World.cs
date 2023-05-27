@@ -2,7 +2,10 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Xml.Linq;
 #endregion
 
@@ -37,6 +40,7 @@ namespace Salvation_v2
 
         public virtual void Update()
         {
+            if (GameGlobals.isEnd) { return; }
             if (!user.hero.dead)
             {
                 attackObjects.Clear();
@@ -79,16 +83,52 @@ namespace Salvation_v2
 
         public virtual void AddProjectile(object info) => projectiles.Add((Projectile2D)info);
 
-        public virtual void LoadData(int level)
+        public virtual void Draw(Vector2 offset)
         {
-            var xml = XDocument.Load($"XML\\Levels\\Level{level}.xml");
+            if (GameGlobals.isEnd) { return; }
+            for (int i = 0; i < images.Count; i++)
+                images[i].Draw(this.offset);
+
+            for (int i=0; i < buttons.Count; i++)
+                buttons[i].Draw(this.offset);
+
+            for (int i = 0; i < doors.Count; i++)
+                doors[i].Draw(this.offset);
+
+            user.Draw(this.offset);
+
+            for (int i = 0; i < projectiles.Count; i++)
+                projectiles[i].Draw(this.offset);
+
+            if (GameGlobals.isParallel)
+                for (int i = 0; i < parralelObject.Count; i++)
+                    parralelObject[i].Draw(this.offset);
+            else
+                for (int i = 0; i < nonCollidingObjects.Count; i++)
+                    nonCollidingObjects[i].Draw(this.offset);
+
+            for (int i = 0; i < spikes.Count; i++)
+                spikes[i].Draw(this.offset);
+
+            UI.Draw(this);
+        }
+
+        #region Data
+        private void LoadData(int level)
+        {
+            var path = $"XML\\Levels\\Level{level}.xml";
+            if (!File.Exists(path))
+            {
+                GameGlobals.isEnd = true;
+                return;
+            }
+            var xml = XDocument.Load(path);
 
             XElement element = null;
             if (xml.Element("Root").Element("User") != null)
                 element = xml.Element("Root").Element("User");
             user = new User(0, element);
 
-            element = null;
             if (xml.Element("Root").Element("Mob") != null)
             {
                 element = xml.Element("Root").Element("Mob");
@@ -206,34 +246,6 @@ namespace Salvation_v2
                 }
             }
         }
-
-        public virtual void Draw(Vector2 offset)
-        {
-            for (int i = 0; i < images.Count; i++)
-                images[i].Draw(this.offset);
-
-            for (int i=0; i < buttons.Count; i++)
-                buttons[i].Draw(this.offset);
-
-            for (int i = 0; i < doors.Count; i++)
-                doors[i].Draw(this.offset);
-
-            user.Draw(this.offset);
-
-            for (int i = 0; i < projectiles.Count; i++)
-                projectiles[i].Draw(this.offset);
-
-            if (GameGlobals.isParallel)
-                for (int i = 0; i < parralelObject.Count; i++)
-                    parralelObject[i].Draw(this.offset);
-            else
-                for (int i = 0; i < nonCollidingObjects.Count; i++)
-                    nonCollidingObjects[i].Draw(this.offset);
-
-            for (int i = 0; i < spikes.Count; i++)
-                spikes[i].Draw(this.offset);
-
-            UI.Draw(this);
-        }
+        #endregion
     }
 }

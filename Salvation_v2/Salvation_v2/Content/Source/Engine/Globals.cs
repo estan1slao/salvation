@@ -30,7 +30,7 @@ namespace Salvation_v2
 
         public static GameTime GameTime;
 
-        public static float Gravitation;
+        public static float Gravitation = 20f;
 
         public static System.Globalization.CultureInfo cultureRU = new System.Globalization.CultureInfo("ru-RU");
         public static System.Globalization.CultureInfo cultureUS = new System.Globalization.CultureInfo("en-US");

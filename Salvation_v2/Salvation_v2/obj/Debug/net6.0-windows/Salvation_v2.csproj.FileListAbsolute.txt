@@ -98,3 +98,9 @@ C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\
 C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\XML\Levels\Level5.xml
 C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\Units\Armored.png
 C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\Units\Armored.xnb
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\Controls\ButtonCtrl.png
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\Controls\ButtonCtrl.xnb
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\backgrounds\bgMain.png
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\backgrounds\bgMain.xnb
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\bgDeadHero.png
+C:\Users\vogade\source\repos\Salvation_v2\Salvation_v2\bin\Debug\net6.0-windows\Content\2D\bgDeadHero.xnb

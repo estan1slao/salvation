@@ -6,8 +6,11 @@
   <SourceFiles>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/bin/Debug/net6.0-windows/Content/2D/backgrounds/backgroundPar.png</File>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/bin/Debug/net6.0-windows/Content/2D/backgrounds/backgroundReal.png</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/bin/Debug/net6.0-windows/Content/2D/backgrounds/bgMain.png</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/bin/Debug/net6.0-windows/Content/2D/bgDeadHero.png</File>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/bin/Debug/net6.0-windows/Content/2D/bullet.png</File>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/bin/Debug/net6.0-windows/Content/2D/button.png</File>
+    <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/bin/Debug/net6.0-windows/Content/2D/Controls/ButtonCtrl.png</File>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/bin/Debug/net6.0-windows/Content/2D/Doors/Door.png</File>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/bin/Debug/net6.0-windows/Content/2D/interface/cursor.png</File>
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/bin/Debug/net6.0-windows/Content/2D/interface/shade.png</File>
@@ -29,6 +32,9 @@
     <File>C:/Users/vogade/source/repos/Salvation_v2/Salvation_v2/bin/Debug/net6.0-windows/Content/ArialFonts/Arial52.spritefont</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

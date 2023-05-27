@@ -30,14 +30,17 @@ namespace Salvation_v2
         {
             var strKilled = $"Killed {GameGlobals.score}";
             var strKilledSize = font12.MeasureString(strKilled);
-            Globals.SpriteBatch.DrawString(font12, strKilled, new Vector2(Globals.screenWidth / 2 - strKilledSize.X / 2, 10), Color.DarkRed);
+            Globals.SpriteBatch.DrawString(font12, strKilled, new Vector2(Globals.screenWidth / 2 - strKilledSize.X / 2, 10), Color.Red);
             healthBar.Draw(new Vector2(20, Globals.screenHeight - 60));
 
             if (world.user.hero.dead)
             {
                 var deadTitle = "Press \"R\" to Restart";
                 var deadTitleSize = font52.MeasureString(deadTitle);
-                Globals.SpriteBatch.DrawString(font52, deadTitle, new Vector2(Globals.screenWidth / 2 - deadTitleSize.X / 2, Globals.screenHeight / 2 - deadTitleSize.Y / 2), Color.Coral);
+                var position = new Vector2(Globals.screenWidth / 2 - deadTitleSize.X / 2, Globals.screenHeight / 2 - deadTitleSize.Y / 2);
+                var background = new Basic2D("2D\\bgDeadHero", new Vector2(position.X - 40f, position.Y - 40f), new Vector2(deadTitleSize.X + 80f, deadTitleSize.Y + 80f));
+                background.Draw(Vector2.Zero);
+                Globals.SpriteBatch.DrawString(font52, deadTitle, position, Color.Blue);
             }
 
             for (int i = 0; i < world.buttons.Count; i++)

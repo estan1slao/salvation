@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -18,10 +19,11 @@ namespace Salvation_v2
     {
         World world;
         int levelNumber;
-        bool[] IsResets = new bool[10]; 
+        bool[] IsResets; 
         public GamePlay(int levelNumber)
         {
             this.levelNumber = levelNumber;
+            IsResets = new bool[new DirectoryInfo("XML\\Levels").GetFiles().Length + 2];
             ResetWorld(null);
         }
 

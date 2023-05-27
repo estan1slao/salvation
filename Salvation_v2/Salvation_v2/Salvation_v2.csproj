@@ -25,7 +25,10 @@
   <ItemGroup>
     <None Remove="Content\2D\backgrounds\backgroundPar.png" />
     <None Remove="Content\2D\backgrounds\backgroundReal.png" />
+    <None Remove="Content\2D\backgrounds\bgMain.png" />
+    <None Remove="Content\2D\bgDeadHero.png" />
     <None Remove="Content\2D\button.png" />
+    <None Remove="Content\2D\Controls\ButtonCtrl.png" />
     <None Remove="Content\2D\Door.png" />
     <None Remove="Content\2D\Doors\Door.png" />
     <None Remove="Content\2D\gg.png" />
@@ -62,10 +65,19 @@
     <Content Include="Content\2D\backgrounds\backgroundReal.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\2D\backgrounds\bgMain.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\2D\bgDeadHero.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\2D\bullet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\2D\button.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\2D\Controls\ButtonCtrl.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\2D\Doors\Door.png">

@@ -92,7 +92,7 @@ namespace Salvation_v2
                 GameGlobals.PassProjectile(new Bullet(new Vector2(pos.X, pos.Y), this, new Vector2(Globals.Mouse.newMousePos.X, Globals.Mouse.newMousePos.Y) - offset));
 
             foreach (var door in doors)
-                if (Globals.Keyboard.GetPress("E") && Globals.IsInside(HitBox, door.HitBox) && door.IsActive)
+                if (Globals.Keyboard.GetPress("E") && door.IsActive && Globals.IsInside(HitBox, door.HitBox) )
                     door.Update(offset, nonCollidingObjects, doors);
 
             foreach (var button in GameGlobals.Buttons)
@@ -102,7 +102,6 @@ namespace Salvation_v2
                 if (Globals.Keyboard.GetPress("E") && Globals.IsInside(HitBox, button.HitBox))
                     button.ActiveTime.Reset();
             }
-
 
             base.Update(offset, null, nonCollidingObjects, doors);
         }
