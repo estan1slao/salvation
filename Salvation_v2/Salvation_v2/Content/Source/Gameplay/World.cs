@@ -185,9 +185,29 @@ namespace Salvation_v2
                                     select t).ToList();
                 for (int i = 0; i < platformList.Count; i++)
                 {
-                    var platform = new Basic2D("2D\\Texture\\platform", new Vector2(Convert.ToInt32(platformList[i].Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(platformList[i].Element("Pos").Element("y").Value, Globals.cultureRU)),
-                        new Vector2(Convert.ToInt32(platformList[i].Element("Size").Element("Width").Value, Globals.cultureRU), Convert.ToInt32(platformList[i].Element("Size").Element("Height").Value, Globals.cultureRU)));
-                    nonCollidingObjects.Add(platform);
+                    var width = Convert.ToInt32(platformList[i].Element("Size").Element("Width").Value, Globals.cultureRU);
+                    var height = Convert.ToInt32(platformList[i].Element("Size").Element("Height").Value, Globals.cultureRU);
+                    var minSize = Math.Min(width, height);
+                    var maxSize = Math.Max(width, height);
+                    var position = new Vector2(Convert.ToInt32(platformList[i].Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(platformList[i].Element("Pos").Element("y").Value, Globals.cultureRU));
+                    if (maxSize == width)
+                    {
+                        for (int j = 0; j < maxSize; j += minSize)
+                        {
+                            var platform = new Basic2D("2D\\Texture\\platform", new Vector2(position.X + j, position.Y),
+                                new Vector2(minSize, minSize));
+                            nonCollidingObjects.Add(platform);
+                        }
+                    }
+                    else
+                    {
+                        for (int j = 0; j < maxSize; j += minSize)
+                        {
+                            var platform = new Basic2D("2D\\Texture\\platform", new Vector2(position.X, position.Y + j),
+                                new Vector2(minSize, minSize));
+                            nonCollidingObjects.Add(platform);
+                        }
+                    }
                 }
 
                 var imageList = (from t in element.Descendants("Image")
@@ -226,9 +246,29 @@ namespace Salvation_v2
                                   select t).ToList();
                 for (int i = 0; i < parObjList.Count; i++)
                 {
-                    var parObj = new Basic2D("2D\\Texture\\platform", new Vector2(Convert.ToInt32(parObjList[i].Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(parObjList[i].Element("Pos").Element("y").Value, Globals.cultureRU)),
-                        new Vector2(Convert.ToInt32(parObjList[i].Element("Size").Element("Width").Value, Globals.cultureRU), Convert.ToInt32(parObjList[i].Element("Size").Element("Height").Value, Globals.cultureRU)));
-                    parralelObject.Add(parObj);
+                    var width = Convert.ToInt32(parObjList[i].Element("Size").Element("Width").Value, Globals.cultureRU);
+                    var height = Convert.ToInt32(parObjList[i].Element("Size").Element("Height").Value, Globals.cultureRU);
+                    var minSize = Math.Min(width, height);
+                    var maxSize = Math.Max(width, height);
+                    var position = new Vector2(Convert.ToInt32(parObjList[i].Element("Pos").Element("x").Value, Globals.cultureRU), Convert.ToInt32(parObjList[i].Element("Pos").Element("y").Value, Globals.cultureRU));
+                    if (maxSize == width)
+                    {
+                        for (int j = 0; j < maxSize; j += minSize)
+                        {
+                            var platform = new Basic2D("2D\\Texture\\platform", new Vector2(position.X + j, position.Y),
+                                new Vector2(minSize, minSize));
+                            parralelObject.Add(platform);
+                        }
+                    }
+                    else
+                    {
+                        for (int j = 0; j < maxSize; j += minSize)
+                        {
+                            var platform = new Basic2D("2D\\Texture\\platform", new Vector2(position.X, position.Y + j),
+                                new Vector2(minSize, minSize));
+                            parralelObject.Add(platform);
+                        }
+                    }
                 }
             }
 

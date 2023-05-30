@@ -68,7 +68,7 @@ namespace Salvation_v2
 
         protected bool IsTouchingBottom(Basic2D sprite)
         {
-            return HitBox.Top + speed < sprite.HitBox.Bottom &&
+            return HitBox.Top - speed < sprite.HitBox.Bottom &&
                    HitBox.Bottom > sprite.HitBox.Bottom &&
                    HitBox.Right > sprite.HitBox.Left &&
                    HitBox.Left < sprite.HitBox.Right;
@@ -113,15 +113,17 @@ namespace Salvation_v2
                 if (sprite == this)
                     continue;
                 if (IsTouchingBottom(sprite))
-                { isTouchingBottom = true; break; }
+                    isTouchingBottom = true;
                 if (IsTouchingLeft(sprite))
-                { isTouchingLeft = true; break; }
+                    isTouchingLeft = true;
                 if (IsTouchingRight(sprite))
-                { isTouchingRight = true; break; }
+                    isTouchingRight = true; 
+                if (isTouchingBottom && isTouchingLeft && isTouchingRight)
+                    break;
             }
-            if (isTouchingBottom)
+            if (isTouchingBottom && !isTouchingBottom && !isTouchingLeft)
                 pos.X = nextPos.X;
-            if (isTouchingLeft || isTouchingRight)
+            if ((isTouchingLeft || isTouchingRight) && !isTouchingBottom)
                 pos.Y = nextPos.Y;
             if (!(isTouchingBottom || isTouchingLeft || isTouchingRight))
                 pos = nextPos;
