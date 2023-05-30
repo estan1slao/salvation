@@ -17,14 +17,14 @@ namespace Salvation_v2
 {
     public class Main : Game
     {
-        private GraphicsDeviceManager _graphics;
+        private GraphicsDeviceManager graphics;
         private State _currentState;
-        public State _nextState;
+        private State _nextState;
         Basic2D cursor;
 
         public Main()
         {
-            _graphics = new GraphicsDeviceManager(this);
+            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
@@ -35,10 +35,10 @@ namespace Salvation_v2
             Globals.screenWidth = 1920;
             Globals.screenHeight = 1080;
 
-            _graphics.PreferredBackBufferWidth = Globals.screenWidth;
-            _graphics.PreferredBackBufferHeight = Globals.screenHeight;
-            //_graphics.IsFullScreen = true;
-            _graphics.ApplyChanges();
+            graphics.PreferredBackBufferWidth = Globals.screenWidth;
+            graphics.PreferredBackBufferHeight = Globals.screenHeight;
+            graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
 
             base.Initialize();
         }
@@ -52,7 +52,7 @@ namespace Salvation_v2
             Globals.Keyboard = new NKeyboard();
             Globals.Mouse = new NMouseControl();
 
-            _currentState = new MenuState(this, _graphics.GraphicsDevice, Content);
+            _currentState = new MenuState(this, graphics.GraphicsDevice, Content);
         }
 
         protected override void Update(GameTime gameTime)
@@ -61,7 +61,7 @@ namespace Salvation_v2
             {
                 if (_currentState is GameState)
                 {
-                    _nextState = new MenuState(this, _graphics.GraphicsDevice, Content);
+                    _nextState = new MenuState(this, graphics.GraphicsDevice, Content);
                     Thread.Sleep(200);
                 }
                 else
@@ -69,7 +69,7 @@ namespace Salvation_v2
             }
 
             if(GameGlobals.isEnd)
-                _nextState = new MenuState(this, _graphics.GraphicsDevice, Content);
+                _nextState = new MenuState(this, graphics.GraphicsDevice, Content);
             GameGlobals.isEnd = false;
 
             if (_nextState != null)

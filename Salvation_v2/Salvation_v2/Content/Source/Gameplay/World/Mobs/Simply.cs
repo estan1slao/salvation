@@ -14,7 +14,6 @@ namespace Salvation_v2
             visibilityRadius = 500;
             frameAnimations = true;
             currentAnimation = 0;
-            diesIn = TypeOfDeath.OnlyReal;
             frameAnimationList.Add(new FrameAnimation(new Vector2(frameSize.X, frameSize.Y), frames, new Vector2(0, 2), 8, 133, 0, "WalkRight"));
             frameAnimationList.Add(new FrameAnimation(new Vector2(frameSize.X, frameSize.Y), frames, new Vector2(0, 6), 8, 133, 0, "WalkLeft"));
             frameAnimationList.Add(new FrameAnimation(new Vector2(frameSize.X, frameSize.Y), frames, new Vector2(0, 4), 8, 133, 0, "StandLeft"));

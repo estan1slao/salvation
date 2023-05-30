@@ -2,10 +2,8 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Reflection.Metadata;
 using System.Xml.Linq;
 #endregion
 
@@ -19,7 +17,7 @@ namespace Salvation_v2
         UI UI;
         List<Basic2D> nonCollidingObjects = new List<Basic2D>();
         List<Spike> spikes = new List<Spike>();
-        List<Door> doors = new List<Door>();
+        public List<Door> doors { get; private set; }
         PassObject ResetWorld;
         List<Basic2D> parralelObject = GameGlobals.parallelObject;
         public List<Button> buttons = GameGlobals.Buttons;
@@ -31,8 +29,6 @@ namespace Salvation_v2
             ResetWorld = resetWorld;
             GameGlobals.PassProjectile = AddProjectile;
             GameGlobals.PassMob = AddMob;
-            parralelObject.Clear();
-            buttons.Clear();
             LoadData(levelNumber);
             offset = new Vector2(0, 0);
             UI = new UI();
@@ -89,7 +85,7 @@ namespace Salvation_v2
             for (int i = 0; i < images.Count; i++)
                 images[i].Draw(this.offset);
 
-            for (int i=0; i < buttons.Count; i++)
+            for (int i = 0; i < buttons.Count; i++)
                 buttons[i].Draw(this.offset);
 
             for (int i = 0; i < doors.Count; i++)
@@ -116,6 +112,8 @@ namespace Salvation_v2
         #region Data
         private void LoadData(int level)
         {
+            parralelObject.Clear();
+            buttons.Clear();
             var path = $"XML\\Levels\\Level{level}.xml";
             if (!File.Exists(path))
             {
@@ -208,6 +206,7 @@ namespace Salvation_v2
                 element = xml.Element("Root").Element("NextLevel");
                 var doorList = (from t in element.Descendants("Door")
                                 select t).ToList();
+                doors = new List<Door>();
                 for (int i = 0; i < doorList.Count; i++)
                 {
                     Door door;

@@ -17,7 +17,7 @@ namespace Salvation_v2
 {
     public class GamePlay
     {
-        World world;
+        public World world { get; private set; }
         int levelNumber;
         bool[] IsResets; 
         public GamePlay(int levelNumber)

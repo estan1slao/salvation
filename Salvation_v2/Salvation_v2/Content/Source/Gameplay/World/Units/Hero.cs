@@ -60,10 +60,11 @@ namespace Salvation_v2
                 SetAnimationByName("Stand");
             if (spaceNow)
             {
+                var oldPos = pos;
                 nextPos.Y -= speedSpace;
                 MoveObjectTop(nonCollidingObjects, nextPos);
                 deltaSpace++;
-                if (deltaSpace == 10)
+                if (deltaSpace == 10 || oldPos == pos)
                 {
                     deltaSpace = 0;
                     spaceNow = false;
